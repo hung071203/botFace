@@ -1,0 +1,26 @@
+{
+  "name": "botface",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assemblyai": "^3.1.2",
+    "axios": "^1.6.2",
+    "bing-chat": "^0.2.3",
+    "dotenv": "^16.3.1",
+    "facebook-chat-api": "^1.8.0",
+    "fs": "^0.0.1-security",
+    "geocoder": "^0.2.3",
+    "google-tts-api": "^2.0.2",
+    "moment": "^2.29.4",
+    "openai": "^4.0.0",
+    "puppeteer": "^21.5.2",
+    "request": "^2.88.2"
+  }
+}
