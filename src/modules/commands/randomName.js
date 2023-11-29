@@ -5,7 +5,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đổi biệt danh Random ',
-    usage: '!rname '
+    usage: '!rname [Người dùng(nếu cần)] '
   };
   
   module.exports.run = async function (api, event, args, client) {
@@ -180,14 +180,31 @@ module.exports.config = {
 
     const data = JSON.parse(body);
     console.log(data, `https://www.behindthename.com/api/random.json?usage=${countryCodes[rdC].code}&gender=${gender[rdG].code}&key=mi451266190`);
-    api.changeNickname(`${data.names[0]} ${data.names[1]}`, event.threadID, event.senderID);
-    
-    api.sendMessage({
-        body: `Tên đã đổi thuộc quốc gia ${formatFont(countryCodes[rdC].full)} và là tên dành cho ${formatFont(gender[rdG].full)} (～￣▽￣)～`,
-        attachment: null,
-        mentions: [],
-         // Mã màu hồng
-    }, event.threadID, event.messageID);
+    if (Object.keys(event.mentions).length === 0) {
+      api.changeNickname(`${data.names[0]} ${data.names[1]}`, event.threadID, event.senderID);
+      
+      api.sendMessage({
+          body: `Tên đã đổi thuộc quốc gia ${formatFont(countryCodes[rdC].full)} và là tên dành cho ${formatFont(gender[rdG].full)} (～￣▽￣)～`,
+          attachment: null,
+          mentions: [],
+          // Mã màu hồng
+      }, event.threadID, event.messageID);
+    }else if (Object.keys(event.mentions).length === 1) {
+      
+      const userID = Object.keys(event.mentions)[0];
+      api.changeNickname(`${data.names[0]} ${data.names[1]}`, event.threadID, userID);
+      
+      api.sendMessage({
+          body: `Tên đã đổi thuộc quốc gia ${formatFont(countryCodes[rdC].full)} và là tên dành cho ${formatFont(gender[rdG].full)} (～￣▽￣)～`,
+          attachment: null,
+          mentions: [],
+          // Mã màu hồng
+      }, event.threadID, event.messageID);
+    }else{
+      api.changeNickname('Cú pháp không hợp lệ, sử dụng !rname [Người dùng(nếu cần)] ',event.threadID, userID, (err) => {
+        if (err) return console.error(err);
+      });
+    }
     
 });
 };
