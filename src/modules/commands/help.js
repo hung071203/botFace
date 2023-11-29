@@ -20,7 +20,6 @@ module.exports.config = {
         commandInfo.push(`${name}: ${description} - Sử dụng: \ ${usage} \ \n`);
       }
     });
-    commandInfo.push(`Gửi link video tiktok để tải! \n`);
 
     // Gửi thông điệp chứa thông tin về các lệnh
     api.sendMessage(commandInfo.join('\n'), event.threadID, event.messageID);

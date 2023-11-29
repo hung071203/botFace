@@ -21,7 +21,7 @@ module.exports.run = async function (api, event, args, client) {
     const location = 'Hanoi,VN';
     try {
         const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`);
-        console.log(response);
+        
         weatherData = response.data;
 
         // Lấy ngày giờ hiện tại
