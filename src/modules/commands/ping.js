@@ -34,7 +34,7 @@ module.exports.run = async function (api, event, args, client) {
         console.log('Nhiệt độ:', celsiusTemperature.toFixed(2), '°C');
         console.log('Mô tả:', weatherData.weather[0].description);
 
-        const message = `Ngày giờ hiện tại: ${currentDateTime}\nThông tin thời tiết:\nNhiệt độ: ${celsiusTemperature.toFixed(2)} °C\nMô tả: ${weatherData.weather[0].description}\nĐộ ẩm: ${weatherData.main.humidity}%\nÁp suất: ${weatherData.main.pressure} hPa\nTốc độ gió: ${weatherData.wind.speed} m/s`;
+        const message = `Địa điểm: Hà Nội, Việt Nam \nNgày giờ hiện tại: ${currentDateTime}\nThông tin thời tiết:\nNhiệt độ: ${celsiusTemperature.toFixed(2)} °C\nMô tả: ${weatherData.weather[0].description}\nĐộ ẩm: ${weatherData.main.humidity}%\nÁp suất: ${weatherData.main.pressure} hPa\nTốc độ gió: ${weatherData.wind.speed} m/s \nTầm nhìn xa: ${weatherData.visibility} m `;
 
         // Hàm được thực thi khi người dùng gửi tin nhắn theo cú pháp prefix + tên lệnh ở phần config
         api.sendMessage(message, event.threadID, event.messageID);

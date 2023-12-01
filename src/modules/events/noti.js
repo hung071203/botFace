@@ -9,6 +9,7 @@ module.exports.config = {
 module.exports.run = function (api, event, args, client) {
 // Hàm được thực thi khico ev bat ki xay ra
 console.log("event!!")
+
 }
 
 

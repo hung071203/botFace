@@ -11,6 +11,7 @@ var client ={
     commands: new Map(),
     events: new Map(),
     noprefix: new Map(),
+    handleReply: new Array(),
     onload: new Array()
 }
 

@@ -15,10 +15,13 @@
     "dotenv": "^16.3.1",
     "facebook-chat-api": "^1.8.0",
     "fs": "^0.0.1-security",
+    "fs-extra": "^11.2.0",
     "geocoder": "^0.2.3",
     "google-tts-api": "^2.0.2",
     "moment": "^2.29.4",
     "puppeteer": "^21.5.2",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "yt-search": "^2.10.4",
+    "ytdl-core": "^4.11.5"
   }
 }

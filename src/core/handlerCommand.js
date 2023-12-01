@@ -6,6 +6,7 @@ module.exports = (client) => {
     const commandFile = readdirSync(commandPath).filter(File => File.endsWith('.js'));
     
     var commandCount = 0,
+        handlerCount = 0,
         noprefixCount = 0;
 
     for(const file of commandFile){
@@ -18,6 +19,10 @@ module.exports = (client) => {
             client.commands.set(command.config.name, command);
         }
 
+        if (command.handleReply) {
+            handlerCount++;
+        }
+
         if (command.noprefix) {
             noprefixCount++;
             client.noprefix.set(command.config.name, command);
@@ -28,5 +33,5 @@ module.exports = (client) => {
         }
     }
     
-    console.log('thanh cong' + commandCount + 'lenh va '+noprefixCount +'lenh noprefix');
+    console.log('thanh cong' + commandCount + 'lenh va '+noprefixCount, handlerCount +'lenh noprefix/handel');
 }

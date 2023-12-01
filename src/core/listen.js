@@ -11,6 +11,17 @@ module.exports = (api, client) => {
         client.events.forEach((value, key) => {
             client.events.get(key).run(api, event, client)
         });
+        console.log(client.handleReply);
+        
+        if (process.env.YT == 1 && event.type === 'message_reply' && client.handleReply != []) {
+            console.log('tesst1', event, client.handleReply);
+            if (event.messageReply.messageID == client.handleReply[client.handleReply.length - 1].messageID && client.handleReply[client.handleReply.length - 1].author == event.senderID) {
+                console.log('tesst2');
+                client.commands.get (client.handleReply[client.handleReply.length - 1].name).handleReply(api, event, client)
+
+            }
+            
+        }
 
         check = event.body== undefined;
         if (check) return;

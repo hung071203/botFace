@@ -77,7 +77,9 @@ module.exports.run = async function (api, event, args, client) {
             }
 
             
-        } 
+        }else if (inputURL.includes('bot') || inputURL.includes('Bot')) {
+          api.sendMessage('Tag cc j?', event.threadID, event.messageID);
+        }
     }
 }
 function formatFont(text) {
