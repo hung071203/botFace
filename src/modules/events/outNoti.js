@@ -7,6 +7,9 @@ module.exports.config = {
 }
 
 module.exports.run = function (api, event, args, client) {
+    if (!event) {
+        return;
+    }
     if (event.logMessageType != 'log:unsubscribe') return;
     console.log(event);
     api.getUserInfo(event.logMessageData.leftParticipantFbId, (err, userInfo) => {

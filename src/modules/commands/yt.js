@@ -29,6 +29,8 @@ module.exports.handleReply = async function (api, event, client) {
         const URL = `https://www.youtube.com/watch?v=${ID}`;
         console.log(URL, event);
         process.env.YT = 1;
+        api.unsendMessage(client.handleReply[client.handleReply.length-1].messageID);
+
         api.sendMessage('𝑩𝒂̣𝒏 𝒎𝒖𝒐̂́𝒏 𝒍𝒂̀𝒎 𝒈𝒊̀ 𝒗𝒐̛́𝒊 𝑽𝒊𝒅𝒆𝒐 𝒏𝒂̀𝒚: \n𝟏. 𝐏𝐡𝐚́𝐭 𝐯𝐢𝐝𝐞𝐨\n𝟐. 𝐏𝐡𝐚́𝐭 𝐧𝐡𝐚̣𝐜', event.threadID, (error, info) => {
             if (error) {
                 console.log(error);
@@ -44,6 +46,7 @@ module.exports.handleReply = async function (api, event, client) {
                 
             }
         }, event.messageID);
+
 
     }else{
         const url = client.handleReply[client.handleReply.length-1].IDs;
@@ -71,9 +74,14 @@ async function downloadVideo(api, url, quality, threadID, messageID,client) {
 
     video.on('end', () => {
         const stream = fs.createReadStream(file);
-        api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
-        process.env.YT = 0;
-        client.handleReply.pop();
+        if (fs.statSync(file).size <= 50331648) {
+            api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
+            process.env.YT = 0;
+        }else{
+            api.sendMessage('Kích thước quá lớn, gửi thất bại!', threadID, messageID);
+            process.env.YT = 0;
+        }
+        
         setTimeout(() => {
             fs.unlink(file, (err) => {
               if (err) {
@@ -90,7 +98,6 @@ async function downloadVideo(api, url, quality, threadID, messageID,client) {
         console.error(err);
         api.sendMessage('An error occurred while downloading the video.', threadID, messageID);
         process.env.YT = 0;
-        client.handleReply.pop();
     });
 }
 
@@ -103,12 +110,16 @@ async function downloadAudio(api, url, quality, threadID, messageID, client) {
     audio.on('end', () => {
         const stream = fs.createReadStream(file);
 
+        if (fs.statSync(file).size <= 26214400) {
+            api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
+            process.env.YT = 0;
+        }else{
+            api.sendMessage('Kích thước quá lớn, gửi thất bại!', threadID, messageID);
+            process.env.YT = 0;
+        }
+
         
 
-        api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
-        process.env.YT = 0;
-        const indexToRemove = client.handleReply.length - 1;
-        client.handleReply.splice(indexToRemove, 1);
         setTimeout(() => {
             fs.unlink(file, (err) => {
               if (err) {
@@ -125,7 +136,6 @@ async function downloadAudio(api, url, quality, threadID, messageID, client) {
         console.error(err);
         api.sendMessage('An error occurred while downloading the audio.', threadID, messageID);
         process.env.YT = 0;
-        client.handleReply.pop();
     });
 }
 
@@ -134,13 +144,22 @@ module.exports.run = async function (api, event, args, client) {
         t = [],
         msg = '';
 
+    
+
     urlYT = 'https://www.youtube.com/watch';
     const content = args.slice(1).join(' ');
+
+    
     if (content == '') {
         api.sendMessage('sau !yt không được trống', event.threadID, event.messageID);
 
         return;
     }else{
+        const id = client.money.find(item => item.ID == event.senderID&&item.threadID == event.threadID);
+        if (id.money<=100) {
+            api.sendMessage('Cần tối thiểu 100$ để thực hiện hành động này!', event.threadID, event.messageID);
+            return;
+        }
         if (content.includes(urlYT) || content.includes('https://youtu.be/')) {
             console.log(event);
             process.env.YT = 1;
@@ -158,6 +177,7 @@ module.exports.run = async function (api, event, args, client) {
                     })
                 }
             }, event.messageID);
+            
 
         }else {
             const result = await yts(content);
@@ -199,6 +219,7 @@ module.exports.run = async function (api, event, args, client) {
             console.log(client.handleReply);
 
         }
+        id.money -= 100;
     }
 }
 
