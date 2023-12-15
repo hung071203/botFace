@@ -91,7 +91,8 @@ module.exports.run = function (api, event, client) {
                         name: userInfo[mID].name,
                         ID: mID,
                         threadID: event.threadID,
-                        money: mn
+                        money: mn,
+                        time: 0
                     });
                 }
 

@@ -17,12 +17,11 @@ module.exports.run = async function (api, event, args, client) {
     return;
     }
 
-    const query = args.slice(1).join(" ");
-    if (query === lastQuery) {
-        api.sendMessage("🕰️ | Cập nhật câu trả lời cho câu hỏi trước", event.threadID, event.messageID);
-        return;
-    } else {
-        lastQuery = query;
+    let query = args.slice(1).join(" ");
+    
+    if (event.type == 'message_reply') {
+        lastQuery = event.messageReply.body
+        query = `${args.slice(1).join(" ")}\n${lastQuery}`
     }
 
     api.sendMessage("Đang tìm câu trả lời...", event.threadID, event.messageID);

@@ -11,7 +11,7 @@ module.exports.run = function (api, event, args, client) {
     // if (!event) {
     //     return;
     // }
-    if (event.logMessageType != 'log:subscribe') return;
+    // if (event.logMessageType != 'log:subscribe') return;
     // console.log(event)
     // api.getThreadInfo (event.threadID, (err, info) => {
     // msgbody = `Chào mừng ${event.logMessageData.addedParticipants[0].fullName} đã đến với băng hải tặc ${info.threadName}\n`;
