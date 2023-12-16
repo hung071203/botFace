@@ -52,17 +52,19 @@ module.exports.run = async function (api, event, args, client) {
             return;
         }
         if (r1 == r2 && r2 == r3) {
+            id.money +=(mn * 10);
             const msg = {
                 body: `chúc mừng bạn ra bộ ba số ${r1}\nBạn nhận được ${(mn * 10).toLocaleString('en-US')}$`,
                 attachment: imagePaths.map(path => fs.createReadStream(path))
             }
             
             
-                api.sendMessage(msg, event.threadID, event.messageID);
-                id.money +=(mn * 10);
+            api.sendMessage(msg, event.threadID, event.messageID);
+                
             
         }else if ((args[1] == 't' && (r1+r2+r3>=11 &&r1+r2+r3<=17)) || (args[1] == 'x' && (r1+r2+r3>=4 &&r1+r2+r3<=10))) {
             if ((r1 == r2 &&r2 != r3) || (r1==r3 && r1 != r2) || (r2== r3 & r1!=r2)) {
+                id.money +=(mn * 2);
                 const msg = {
                     body: `chúc mừng bạn ra 1 cặp số giống nhau \nBạn nhận được ${(mn * 2).toLocaleString('en-US')}$`,
                     attachment: imagePaths.map(path => fs.createReadStream(path))
@@ -70,9 +72,10 @@ module.exports.run = async function (api, event, args, client) {
                 
                 
                     api.sendMessage(msg, event.threadID, event.messageID);
-                    id.money +=(mn * 2);
+                    
                 
             }else{
+                id.money +=mn;
                 let checktx = 'Tài';
                 if ((r1+r2+r3>=4 &&r1+r2+r3<=10)) {
                     checktx = 'Xỉu';
@@ -84,10 +87,11 @@ module.exports.run = async function (api, event, args, client) {
                 
                 
                     api.sendMessage(msg, event.threadID, event.messageID);
-                    id.money +=mn;
+                    
                 
             }
         }else{
+            id.money -=mn;
             let checktx = 'Tài';
             if ((r1+r2+r3>=4 &&r1+r2+r3<=10)) {
                 checktx = 'Xỉu';
@@ -99,7 +103,7 @@ module.exports.run = async function (api, event, args, client) {
             
             
                 api.sendMessage(msg, event.threadID, event.messageID);
-                id.money -=mn;
+                
             
         }
     }else{
