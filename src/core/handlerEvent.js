@@ -7,8 +7,7 @@ module.exports = (client) => {
 
     var eventCount = 0;
     for(const file of eventFile){
-        event = require(eventPath + `/${file}`);
-
+        let event = require(eventPath + `/${file}`);
         if (!event.config.name) return;
         if (event.run) {
             eventCount++;

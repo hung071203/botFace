@@ -5,10 +5,12 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đố vui  ',
+    tag: 'game',
     usage: '!dovui '
 };
 
 module.exports.run = async function (api, event, args, client) {
+  return api.sendMessage('Tính năng tạm thời không khả dụng', event.threadID,event.messageID);
   request(`https://docs-api.jrtxtracy.repl.co/game/dovui`, (err, response, body) => {
     if (err) {
         console.error(err);
@@ -28,19 +30,18 @@ module.exports.run = async function (api, event, args, client) {
     })
     
     const msg = `${data.data.question} \n ${option}`;
-    process.env.CHECK = 1;
     api.sendMessage(msg, event.threadID,(error, info) => {
       if (error) {
           console.log(error);
       } else {
-          client.handleReply.push({
-              type: 'dv',
-              name: this.config.name,
-              messageID: info.messageID,
-              author: event.senderID,
-              dapan: answer
-          })
-          
+        
+        client.handleReply.push({
+            type: 'dv',
+            name: this.config.name,
+            messageID: info.messageID,
+            author: event.senderID,
+            dapan: answer
+        })
       }
     },event.messageID);
 
@@ -48,17 +49,19 @@ module.exports.run = async function (api, event, args, client) {
 
 }
 
-module.exports.handleReply = async function (api, event, client) {
-  const dp = client.handleReply[client.handleReply.length - 1].dapan.toLowerCase();
+module.exports.handleReply = async function (api, event, client, hdr) {
+  if(event.type != 'message_reply') return;
+  let check = hdr;
+  console.log('hahi',check);
+  if(!check) return;
+
+  const dp = check.dapan.toLowerCase();
   console.log('hismd', event);
 
   const id = client.money.find(item => item.ID == event.senderID&&item.threadID == event.threadID);
   if (id) {
-    if (event.messageReply.messageID == client.handleReply[client.handleReply.length - 1].messageID) {
-        if (event.body.toLowerCase() == dp) {
-        console.log('kkkkkkk');
-        process.env.CHECK = 0;
-        console.log(process.env.CHECK);
+    if (event.messageReply.messageID == check.messageID) {
+      if (event.body.toLowerCase() == dp) {
         api.getUserInfo(event.senderID, (err, userInfo) => {
           msgbody = `Chúc mừng ${userInfo[event.senderID].name} đã trả lời đúng(+130$)`;
           msg = {
@@ -72,6 +75,8 @@ module.exports.handleReply = async function (api, event, client) {
               ]
           }
           api.sendMessage(msg, event.threadID,event.messageID);
+          api.unsendMessage(check.messageID);
+          client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID);
           id.money += 130;
         })
       }else{

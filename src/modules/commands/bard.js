@@ -5,6 +5,7 @@ module.exports.config = {
   version: "1.0.0",
   credits: "Ralph",
   description: "Trả lời câu hỏi bằng AI",
+  tag: 'AI',
   usage: "!bard [câu hỏi]",
 };
 

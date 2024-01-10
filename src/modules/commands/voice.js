@@ -7,18 +7,24 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Chuyển đổi văn bản thành giọng nói',
+    tag: 'Công cụ',
     usage: '!voice [text]',
 };
 
 module.exports.run = async function (api, event, args, client) {
     // Kiểm tra số lượng đối số
-    if (args.length < 2) {
+    if (args.length == 1 && event.type != 'message_reply') {
         api.sendMessage('Invalid number of arguments. Usage: !voice [text]', event.threadID, event.messageID);
         return;
     }
 
     // Lấy nội dung từ tin nhắn
-    const text = args.slice(1).join(' ');
+
+    let text = args.slice(1).join(' ');
+    if (event.type == 'message_reply') {
+        lastQuery = event.messageReply.body
+        text = `${args.slice(1).join(" ")}\n${lastQuery}`
+    }
 
     try {
         // Chuyển đổi văn bản thành giọng nói

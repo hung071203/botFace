@@ -20,7 +20,7 @@ module.exports.run = async function (api, event, args, client) {
         return;
     }
     if (event.type == 'message') {
-        
+        return;
         const inputURL = event.body.toLowerCase(); // Giả sử args[0] là đường dẫn cần kiểm tra
         console.log(inputURL);
         const chui = [

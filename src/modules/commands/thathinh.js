@@ -16,6 +16,7 @@ module.exports.run = async function (api, event, args, client) {
         'JRTfree_9565404844'
     ]
     const i = Math.floor(Math.random() * key.length);
+    return api.sendMessage('Tính năng tạm thời không khả dụng', event.threadID,event.messageID);
     request(`https://docs-api.jrtxtracy.repl.co/saying/hearing?apikey=${key[i]}`, (err, response, body) => {
         if (err) {
             console.error(err);

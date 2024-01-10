@@ -6,16 +6,23 @@ const login = require("facebook-chat-api");
 
 loginPath = {appState: JSON.parse(readFileSync(__dirname + "/appstate.json", "utf-8"))};
 
-var client ={
+var client = {
     config: process.env,
     commands: new Map(),
     events: new Map(),
     noprefix: new Map(),
     handleReply: new Array(),
+    umessage: new Array(), // Khởi tạo umessage ở đây
     money: new Array(),
+    message: new Array(),
+    unsend: new Array(),
+    shortcut: new Array(),
     QTV: new Array(),
+    QTVOL: new Array(),
     onload: new Array()
-}
+  }
+
+
 
 const handlers = ['handlerCommand', 'handlerEvent'];
 

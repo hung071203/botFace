@@ -9,6 +9,7 @@ module.exports.config = {
     version: "1.0.0",
     credits: "Ralph",
     description: "Tài xỉu",
+    tag: 'game',
     usage: "!tx [tài(t)/xỉu(x)] [số tiền cược(>=100$)(allin nếu muốn cược toàn bộ)]",
 };
   
@@ -38,6 +39,10 @@ module.exports.run = async function (api, event, args, client) {
     if (args[2] == 'allin') {
         mn = id.money;
     }else{
+        if (isNaN(args[2])) {
+            api.sendMessage(`Số tiền không hợp lệ!`, event.threadID, event.messageID);
+            return;
+        }
         mn = parseInt(args[2]);
     }
     console.log(args, args.length);

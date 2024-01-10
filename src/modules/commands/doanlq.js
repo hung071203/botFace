@@ -9,10 +9,12 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đoán tướng liên quân ',
+    tag: 'game',
     usage: '!dlq '
 };
 
 module.exports.run = async function (api, event, args, client) {
+    return api.sendMessage('Tính năng tạm thời không khả dụng', event.threadID,event.messageID);
     request(`https://docs-api.jrtxtracy.repl.co/game/lienquanquiz`, (err, response, body) => {
         if (err) {
             console.error(err);
@@ -44,11 +46,11 @@ module.exports.run = async function (api, event, args, client) {
                     attachment: stream, 
                     body: `${data.question} \n ${data.options_}`
                 }
-                process.env.CHECK = 1;
                 api.sendMessage(msg, event.threadID,(error, info) => {
                 if (error) {
                     console.log(error);
                 } else {
+                    
                     client.handleReply.push({
                         type: 'lq',
                         name: this.config.name,
@@ -58,6 +60,8 @@ module.exports.run = async function (api, event, args, client) {
                         t: data.answer,
                         c:data.skillname
                     })
+                    
+                    
                     
                 }
                 },event.messageID);
@@ -83,17 +87,20 @@ module.exports.run = async function (api, event, args, client) {
 }
 
 
-module.exports.handleReply = async function (api, event, client) {
-    const dp = client.handleReply[client.handleReply.length - 1].dapan.toLowerCase();
+module.exports.handleReply = async function (api, event, client, hdr) {
+    if(event.type != 'message_reply') return;
+    let check = hdr;
+    if(!check) return;
+    const dp = check.dapan.toLowerCase();
     console.log("chekkhdfudj");
     const id = client.money.find(item => item.ID == event.senderID&&item.threadID == event.threadID);
     if (id) {
-        if (event.messageReply.messageID == client.handleReply[client.handleReply.length - 1].messageID) {
+        if (event.messageReply.messageID == check.messageID) {
 
             if (event.body.toLowerCase() == dp) {
             
                 api.getUserInfo(event.senderID, (err, userInfo) => {
-                    msgbody = `Chúc mừng ${userInfo[event.senderID].name} đã trả lời đúng, Skill này là ${client.handleReply[client.handleReply.length - 1].c} của vị tướng ${client.handleReply[client.handleReply.length - 1].t}\nBạn đã được thêm 100$ vào tài khoản`;
+                    msgbody = `Chúc mừng ${userInfo[event.senderID].name} đã trả lời đúng, Skill này là ${check.c} của vị tướng ${check.t}\nBạn đã được thêm 100$ vào tài khoản`;
                     msg = {
                         body: msgbody,
                         mentions: [
@@ -107,9 +114,10 @@ module.exports.handleReply = async function (api, event, client) {
                     api.sendMessage(msg, event.threadID,event.messageID);
                     id.money += 100;
                 })
-                process.env.CHECK = 0;
-                console.log(process.env.CHECK);
-                api.unsendMessage(client.handleReply[client.handleReply.length-1].messageID);
+
+                let check = client.handleReply.find(item => item.name == this.config.name);
+                api.unsendMessage(check.messageID);
+                client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID );
             }else{
                 api.sendMessage('Đoán sai rồi(-100$), đoán lại!', event.threadID,event.messageID);
                 id.money -=100;

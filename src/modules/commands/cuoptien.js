@@ -3,6 +3,7 @@ module.exports.config = {
     version: "1.0.0",
     credits: "Ralph",
     description: "Cướp tiền của 1 người dùng bất kì",
+    tag: 'Money',
     usage: "!cuop [stk(nếu cần)]",
   };
   

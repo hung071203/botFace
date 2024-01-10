@@ -3,8 +3,9 @@ module.exports.config = {
     version: "1.0.0",
     credits: "Ralph",
     description: "Kiếm tiền",
+    tag: 'Money',
     usage: "!work",
-  };
+};
   
   
 module.exports.run = async function (api, event, args, client) {

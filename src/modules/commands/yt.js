@@ -13,23 +13,24 @@ module.exports.config = {
     hasPermssion: 0,
     credits: 'Hung',
     description: 'Phát nhạc hoặc video thông qua link YouTube hoặc từ khoá tìm kiếm',
-    commandCategory: 'Công cụ',
+    tag: 'Công cụ',
     usage: '!yt < keyword/url >',
     
 };
-module.exports.handleReply = async function (api, event, client) {
+module.exports.handleReply = async function (api, event, client, hdr) {
     console.log(client.handleReply);
+    if(event.messageReply.messageID != hdr.messageID) return;
+    if(hdr.author != event.senderID) return api.sendMessage('Chỉ người hỏi mới được rep lại tin nhắn này', event.threadID,event.messageID);
     
-    
-    if (client.handleReply[client.handleReply.length-1].type == 'list') {
-        const IDS = client.handleReply[client.handleReply.length-1].IDs
+    if (hdr.type == 'list') {
+        const IDS = hdr.IDs
         const ID = IDS[parseInt(event.body) - 1];
-        const t = client.handleReply[client.handleReply.length-1].t;
+        const t = hdr.t;
         const ti = t[parseInt(event.body) - 1];
         const URL = `https://www.youtube.com/watch?v=${ID}`;
         console.log(URL, event);
         process.env.YT = 1;
-        api.unsendMessage(client.handleReply[client.handleReply.length-1].messageID);
+        api.unsendMessage(hdr.messageID);
 
         api.sendMessage('𝑩𝒂̣𝒏 𝒎𝒖𝒐̂́𝒏 𝒍𝒂̀𝒎 𝒈𝒊̀ 𝒗𝒐̛́𝒊 𝑽𝒊𝒅𝒆𝒐 𝒏𝒂̀𝒚: \n𝟏. 𝐏𝐡𝐚́𝐭 𝐯𝐢𝐝𝐞𝐨\n𝟐. 𝐏𝐡𝐚́𝐭 𝐧𝐡𝐚̣𝐜', event.threadID, (error, info) => {
             if (error) {
@@ -46,18 +47,21 @@ module.exports.handleReply = async function (api, event, client) {
                 
             }
         }, event.messageID);
-
+        client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID );
 
     }else{
-        const url = client.handleReply[client.handleReply.length-1].IDs;
+        const url = hdr.IDs;
         if (event.body == '1') {
             const ytdlOptions = { quality: '18' };
-            downloadVideo(api, url, ytdlOptions, event.threadID, event.messageID, client);
+            downloadVideo(api, url, ytdlOptions, event.threadID, event.messageID, hdr);
+            client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID );
         }else if(event.body == '2'){
             const ytdlOptions = { quality: '18' };
-            downloadAudio(api, url, ytdlOptions, event.threadID, event.messageID, client);
+            downloadAudio(api, url, ytdlOptions, event.threadID, event.messageID, hdr);
+            client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID );
         }else{
             api.sendMessage(`Cú pháp không hợp lệ, hủy tải!`, event.threadID, event.messageID);
+            client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID );
             process.env.YT = 0;
             return;
         }
@@ -65,7 +69,7 @@ module.exports.handleReply = async function (api, event, client) {
 
 }
 
-async function downloadVideo(api, url, quality, threadID, messageID,client) {
+async function downloadVideo(api, url, quality, threadID, messageID,hdr) {
     const video = ytdl(url, quality);
     const file = path.join(__dirname, '..', '..', 'youtube', `${Date.now()}.mp4`);
 
@@ -75,7 +79,7 @@ async function downloadVideo(api, url, quality, threadID, messageID,client) {
     video.on('end', () => {
         const stream = fs.createReadStream(file);
         if (fs.statSync(file).size <= 50331648) {
-            api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
+            api.sendMessage({ attachment: stream, body: `${hdr.titles}` }, threadID, messageID);
             process.env.YT = 0;
         }else{
             api.sendMessage('Kích thước quá lớn, gửi thất bại!', threadID, messageID);
@@ -101,7 +105,7 @@ async function downloadVideo(api, url, quality, threadID, messageID,client) {
     });
 }
 
-async function downloadAudio(api, url, quality, threadID, messageID, client) {
+async function downloadAudio(api, url, quality, threadID, messageID, hdr) {
     const audio = ytdl(url, quality);
     const file = path.join(__dirname, '..', '..', 'youtube', `${Date.now()}.mp3`);
 
@@ -111,7 +115,7 @@ async function downloadAudio(api, url, quality, threadID, messageID, client) {
         const stream = fs.createReadStream(file);
 
         if (fs.statSync(file).size <= 26214400) {
-            api.sendMessage({ attachment: stream, body: `${client.handleReply[client.handleReply.length-1].titles}` }, threadID, messageID);
+            api.sendMessage({ attachment: stream, body: `${hdr.titles}` }, threadID, messageID);
             process.env.YT = 0;
         }else{
             api.sendMessage('Kích thước quá lớn, gửi thất bại!', threadID, messageID);

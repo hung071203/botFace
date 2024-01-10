@@ -6,8 +6,8 @@ exports.config = {
   hasPermssion: 2,
   credits: 'DC-Nam',
   description: '.',
-  commandCategory: 'Hệ Thống',
   usage: 'Gửi đường dẫn video Tiktok',
+  tag: 'Công cụ',
   cooldowns: 3
 };
 module.exports.run = async function (api, event, args, client) {

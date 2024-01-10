@@ -3,6 +3,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Hiện danh sách tài khoản giàu nhất từ trên xuống dưới',
+    tag: 'Money',
     usage: '!ttk',
 };
 

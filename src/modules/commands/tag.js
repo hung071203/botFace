@@ -15,6 +15,7 @@ module.exports.run = async function (api, event, args, client) {
         api.sendMessage('Số lượng đối số không hợp lệ. Cách sử dụng: !tag [tên người dùng] [nội dung] [số lần gắn thẻ]', event.threadID, event.messageID);
         return;
     }
+    
 
     // Trích xuất đối số
     const userID = Object.keys(event.mentions)[0];
@@ -41,6 +42,10 @@ module.exports.run = async function (api, event, args, client) {
     console.log(username, tagCount, content);
 
     for (let index = 0; index < tagCount; index++) {
+        if (process.env.ATS == 1) {
+            api.sendMessage('AntiSpam đang được kích hoạt', event.threadID);
+            return;
+        }
         const taggedMessage = `${username} ${content}`;
         msg = {
             body: taggedMessage,

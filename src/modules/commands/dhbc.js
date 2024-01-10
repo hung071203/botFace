@@ -5,10 +5,12 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đuổi hình bắt chữ  ',
+    tag: 'game',
     usage: '!dhbc '
 };
 
 module.exports.run = async function (api, event, args, client) {
+  return api.sendMessage('Tính năng tạm thời không khả dụng', event.threadID,event.messageID);
   request(`https://docs-api.jrtxtracy.repl.co/game/dhbcemj`, (err, response, body) => {
     if (err) {
         console.error(err);
@@ -38,13 +40,16 @@ module.exports.run = async function (api, event, args, client) {
 
 }
 
-module.exports.handleReply = async function (api, event, client) {
-  const dp = client.handleReply[client.handleReply.length - 1].dapan.toLowerCase();
+module.exports.handleReply = async function (api, event, client, hdr) {
+  if(event.type != 'message_reply') return;
+  let check = hdr;
+  if(!check) return;
+  const dp = check.dapan.toLowerCase();
   console.log('hismd', event);
 
   const id = client.money.find(item => item.ID == event.senderID&&item.threadID == event.threadID);
   if (id) {
-    if (event.messageReply.messageID == client.handleReply[client.handleReply.length - 1].messageID) {
+    if (event.messageReply.messageID == check.messageID) {
         if (event.body.toLowerCase() == dp) {
         console.log('kkkkkkk');
         process.env.CHECK = 0;
@@ -62,6 +67,8 @@ module.exports.handleReply = async function (api, event, client) {
               ]
           }
           api.sendMessage(msg, event.threadID,event.messageID);
+          api.unsendMessage(check.messageID);
+          client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID);
           id.money += 150;
         })
       }else{

@@ -28,9 +28,7 @@ module.exports.config = {
         if (err) return console.error(err);
       });
     }else{
-      api.changeNickname('Cú pháp không hợp lệ, sử dụng !sname [Người dùng(nếu cần)] [biệt danh] ',event.threadID, userID, (err) => {
-        if (err) return console.error(err);
-      });
+      api.sendMessage('Cú pháp không hợp lệ, sử dụng !sname [Người dùng(nếu cần)] [biệt danh] ',event.threadID, event.messageID);
     }
   
     
