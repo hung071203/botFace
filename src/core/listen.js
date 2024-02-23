@@ -11,7 +11,7 @@ module.exports = (api, client) => {
         client.events.forEach((value, key) => {
             client.events.get(key).run(api, event, client)
         });
-        console.log(client.handleReply, client.QTV, process.env.QTVOL, process.env.CHECK, process.env.YT);
+        // console.log(client.handleReply, client.QTV, process.env.QTVOL, process.env.CHECK, process.env.YT);
         
         if (process.env.YT == 1 && event.type === 'message_reply' && client.handleReply != []) {
             console.log('tesst1', event, client.handleReply);

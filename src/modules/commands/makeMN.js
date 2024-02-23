@@ -20,6 +20,7 @@ module.exports.run = async function (api, event, args, client) {
     }else{
         const check = client.money.find(item => item.ID == event.senderID && item.threadID == event.threadID);
         const idC = client.money.find(item => item.ID == args[1] && item.threadID == event.threadID);
+        if(parseInt(args[2]) > 9999999999) return api.sendMessage('Số tiền không được vượt quá 9,999,999,999$', event.threadID, event.messageID);
         console.log(check);
         console.log(idC);
         if (check) {

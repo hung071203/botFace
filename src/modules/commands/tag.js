@@ -5,6 +5,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'TênCủaBạn',
     description: 'Gắn thẻ ai đó cùng với tin nhắn',
+    tag: 'system',
     usage: '!tag [tên người dùng] [nội dung] [số lần gắn thẻ]'
 };
 

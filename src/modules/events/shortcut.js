@@ -29,11 +29,16 @@ module.exports.run = function (api, event, client) {
             checkR = 1;
         }
         
-        fs.writeFile(filePath, JSON.stringify(client.shortcut, null, 2), { encoding: 'utf8', flag: 'w' }, (err) => {
+        
+        fs.writeFile(filePath + '.tmp', JSON.stringify(client.shortcut, null, 2), { encoding: 'utf8' }, (err) => {
             if (err) {
-                console.error('Lỗi khi lưu shortcut file:', err);
+                console.error('Lỗi khi lưu tien file:', err);
             } else {
-                
+                fs.rename(filePath + '.tmp', filePath, (err) => {
+                    if (err) {
+                        console.error('Lỗi khi đổi tên file:', err);
+                    }
+                });
             }
         });
         

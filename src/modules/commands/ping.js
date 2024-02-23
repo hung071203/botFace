@@ -4,6 +4,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'HungDz',
     description: 'Ping! nội dung đến mọi người',
+    tag: 'system',
     usage: '!ping [nội dung]',
 };
 

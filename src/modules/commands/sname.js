@@ -3,6 +3,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đổi biệt danh ',
+    tag: 'system',
     usage: '!sname [Người dùng(nếu cần)] [biệt danh]'
   };
   

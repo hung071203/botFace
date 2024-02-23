@@ -1,0 +1,113 @@
+[
+    {
+        "name": "Nhân loại",
+        "xp": 100
+    },
+    {
+      "name": "Luyện Khí Sơ Kỳ",
+      "xp": 1000
+    },
+    {
+      "name": "Luyện Khí Trung Kỳ",
+      "xp": 3000
+    },
+    {
+      "name": "Luyện Khí Hậu Kỳ",
+      "xp": 6000
+    },
+    {
+      "name": "Luyện Khí Đỉnh Phong",
+      "xp": 10000
+    },
+    {
+      "name": "Trúc Cơ Sơ Kỳ",
+      "xp": 15000
+    },
+    {
+      "name": "Trúc Cơ Trung Kỳ",
+      "xp": 25000
+    },
+    {
+      "name": "Trúc Cơ Hậu Kỳ",
+      "xp": 40000
+    },
+    {
+      "name": "Trúc Cơ Đỉnh Phong",
+      "xp": 60000
+    },
+    {
+      "name": "Kim Đan Sơ Kỳ",
+      "xp": 80000
+    },
+    {
+      "name": "Kim Đan Trung Kỳ",
+      "xp": 120000
+    },
+    {
+      "name": "Kim Đan Hậu Kỳ",
+      "xp": 180000
+    },
+    {
+      "name": "Kim Đan Đỉnh Phong",
+      "xp": 250000
+    },
+    {
+      "name": "Nguyên Anh Sơ Kỳ",
+      "xp": 350000
+    },
+    {
+      "name": "Nguyên Anh Trung Kỳ",
+      "xp": 500000
+    },
+    {
+      "name": "Nguyên Anh Hậu Kỳ",
+      "xp": 700000
+    },
+    {
+      "name": "Nguyên Anh Đỉnh Phong",
+      "xp": 1000000
+    },
+    {
+      "name": "Hóa Thần Sơ Kỳ",
+      "xp": 1500000
+    },
+    {
+      "name": "Hóa Thần Trung Kỳ",
+      "xp": 2000000
+    },
+    {
+      "name": "Hóa Thần Hậu Kỳ",
+      "xp": 3000000
+    },
+    {
+      "name": "Hóa Thần Đỉnh Phong",
+      "xp": 5000000
+    },
+    {
+      "name": "Đại Thừa Sơ Kỳ",
+      "xp": 8000000
+    },
+    {
+      "name": "Đại Thừa Trung Kỳ",
+      "xp": 10000000
+    },
+    {
+      "name": "Đại Thừa Hậu Kỳ",
+      "xp": 15000000
+    },
+    {
+      "name": "Đại Thừa Đỉnh Phong",
+      "xp": 25000000
+    },
+    {
+      "name": "Độ Kiếp",
+      "xp": 50000000
+    },
+    {
+      "name": "Kim Tiên",
+      "xp": 50000000000
+    }
+    
+    
+  ]
+  

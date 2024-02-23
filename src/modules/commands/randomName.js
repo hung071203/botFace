@@ -5,6 +5,7 @@ module.exports.config = {
     version: '1.0.0',
     credit: 'YourName',
     description: 'Đổi biệt danh Random ',
+    tag: 'system',
     usage: '!rname [Người dùng(nếu cần)] '
   };
   

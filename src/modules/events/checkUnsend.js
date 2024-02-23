@@ -41,12 +41,16 @@ module.exports.run = async function (api, event, client) {
         // Thêm dữ liệu mới vào mảng hiện tại
         client.message.push(event);
         
-        // Ghi lại mảng vào file
-        fs.writeFile(filePath, JSON.stringify(client.message, null, 2), { encoding: 'utf8', flag: 'w' }, (err) => {
+        
+        fs.writeFile(filePath + '.tmp', JSON.stringify(client.message, null, 2), { encoding: 'utf8' }, (err) => {
             if (err) {
-                console.error('Lỗi khi lưu file:', err);
+                console.error('Lỗi khi lưu tien file:', err);
             } else {
-                console.log('Dữ liệu đã được lưu vào file thành công.');
+                fs.rename(filePath + '.tmp', filePath, (err) => {
+                    if (err) {
+                        console.error('Lỗi khi đổi tên file:', err);
+                    }
+                });
             }
         });
     }

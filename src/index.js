@@ -5,6 +5,7 @@ const { readFileSync } = require("fs");
 const login = require("facebook-chat-api");
 
 loginPath = {appState: JSON.parse(readFileSync(__dirname + "/appstate.json", "utf-8"))};
+loginAcc = {email: "hungng856@gmail.com", password: "hung123456"}
 
 var client = {
     config: process.env,
@@ -19,6 +20,11 @@ var client = {
     shortcut: new Array(),
     QTV: new Array(),
     QTVOL: new Array(),
+    tempMail: new Array(),
+    userCM: new Array(),
+    coinMaster: new Array(),
+    userLevel: new Array(),
+    dataLevel: new Array(),
     onload: new Array()
   }
 

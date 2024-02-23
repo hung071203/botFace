@@ -13,7 +13,7 @@ module.exports.config = {
     usage: "!ai [câu hỏi]",
   };
   
-  
+let chatHis = []
 module.exports.run = async function (api, event, args, client) {
     
     if (args.length <=1) {
@@ -69,8 +69,33 @@ module.exports.run = async function (api, event, args, client) {
     }
     console.log(query);
     
+    let findHis = chatHis.find(item => item.ID == event.senderID)
+    if (!findHis) {
+      chatHis.push({
+        ID:event.senderID,
+        his:[
+          {
+            role: "user",
+            parts: "Chào bạn!",
+          },
+          {
+            role: "model",
+            parts: "Tôi có thể giúp gì được cho bạn?",
+          }
+        ]
+      })
+      findHis = chatHis.find(item => item.ID == event.senderID)
+    }
     api.sendMessage('Đang tìm câu trả lời...', event.threadID, event.messageID);
-    const text = await runN(query);
+    const text = await runN(query, findHis.his);
+    findHis.his.push({
+      role: "user",
+      parts: query,
+    })
+    findHis.his.push({
+      role: "model",
+      parts: text,
+    })
     api.sendMessage(text, event.threadID, event.messageID);
 
 }  
@@ -103,29 +128,21 @@ async function run(prompts, filePath) {
         text = response.text();
     } catch (error) {
         console.error("An error occurred:", error);
-        text = "Văn bản không được xử lý vì có thể chứa từ ngữ nhạy cảm!";
+        text = error.message;
         
       }
     return text;
 }
 
-async function runN(prompts) {
+async function runN(prompts, his) {
     let text = '';
+    console.log(his);
     try {
         // For text-only input, use the gemini-pro model
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       
         const chat = model.startChat({
-          history: [
-            {
-              role: "user",
-              parts: "Hello",
-            },
-            {
-              role: "model",
-              parts: "Great to meet you. What would you like to know?",
-            },
-          ],
+          history: his,
         });
       
         const msg = prompts;
@@ -140,8 +157,8 @@ async function runN(prompts) {
         text = response.text();
         
       } catch (error) {
-        console.error("An error occurred:", error);
-        text = "Văn bản không được xử lý vì có thể chứa từ ngữ nhạy cảm!";
+        
+        text = error.message;
         
       }
       return text;

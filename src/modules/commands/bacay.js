@@ -40,7 +40,7 @@ module.exports.run = async function (api, event, args, client) {
 }
 
 module.exports.handleReply = async function (api, event, client) {
-    
+    if(!event) return
     if(event.type == 'message_reply'|| event.type == 'message_reaction'){
         const bacayReplies = client.handleReply.filter(reply => reply.type === 'bacay');
 
