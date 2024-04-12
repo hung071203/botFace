@@ -61,7 +61,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
   let args = event.body.trim().split(' ')
   if(args[0].includes(process.env.PREFIX)) return
   if (event.type == 'message_reply') {
-      if (event.messageReply.attachments.length == 0) {
+      if (event.body != 0) {
           const lastQuery = event.messageReply.body
           query = `${lastQuery}\n${query}`
       }else{
@@ -81,7 +81,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
                   // Bắt sự kiện khi tải xong
                   response.data.on('end', async () => {
                       console.log('Ảnh đã được tải thành công và lưu vào:', filePath);
-                      api.sendMessage('Đang tìm câu trả lời...', event.threadID, event.messageID);
+                      
                       const text = await run(query, filePath);
                       api.sendMessage(text, event.threadID, event.messageID);
                       
@@ -109,7 +109,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
   console.log(query);
   let findHis = hdr.hisU
   
-  api.sendMessage('Đang tìm câu trả lời...', event.threadID, event.messageID);
+  
   const text = await runN(query, findHis.his);
   findHis.his.push({
     role: "user",

@@ -28,7 +28,19 @@ module.exports.run = async function (api, event, args, client) {
             generateLeaderboard(arrMess, inf.participantIDs, api).then((leaderboard) => {
               let msg = `-----------------------------------------------------------------------\n|BXH những người lắm mồm nhất nhóm ${inf.threadName} kể từ ${localeDate}:|\n-----------------------------------------------------------------------\n${leaderboard}`;
               
-              api.sendMessage(msg, event.threadID, event.messageID);
+              api.sendMessage(msg, event.threadID, (error, info) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    client.umessage.push({
+                        type: 'unsend',
+                        name: this.config.name,
+                        messageID: info.messageID,
+                        author: event.senderID,
+                    })
+                    
+                }
+            }, event.messageID);
             });
         }
     });

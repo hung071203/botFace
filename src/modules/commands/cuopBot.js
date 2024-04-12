@@ -1,4 +1,4 @@
-const { el } = require("translate-google/languages");
+
 
 module.exports.config = {
     name: 'cuopbot',

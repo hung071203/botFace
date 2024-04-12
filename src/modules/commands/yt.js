@@ -151,6 +151,7 @@ module.exports.run = async function (api, event, args, client) {
     
 
     urlYT = 'https://www.youtube.com/watch';
+    urlYT2 = 'https://m.youtube.com/watch';
     const content = args.slice(1).join(' ');
 
     
@@ -164,7 +165,7 @@ module.exports.run = async function (api, event, args, client) {
             api.sendMessage('Cần tối thiểu 100$ để thực hiện hành động này!', event.threadID, event.messageID);
             return;
         }
-        if (content.includes(urlYT) || content.includes('https://youtu.be/')) {
+        if (content.includes(urlYT) || content.includes('https://youtu.be/') || content.includes(urlYT2)) {
             console.log(event);
             process.env.YT = 1;
             api.sendMessage('𝑩𝒂̣𝒏 𝒎𝒖𝒐̂́𝒏 𝒍𝒂̀𝒎 𝒈𝒊̀ 𝒗𝒐̛́𝒊 𝑽𝒊𝒅𝒆𝒐 𝒏𝒂̀𝒚: \n𝟏. 𝐏𝐡𝐚́𝐭 𝐯𝐢𝐝𝐞𝐨\n𝟐. 𝐏𝐡𝐚́𝐭 𝐧𝐡𝐚̣𝐜', event.threadID, (error, info) => {

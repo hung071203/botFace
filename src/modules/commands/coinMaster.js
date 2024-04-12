@@ -27,7 +27,7 @@ module.exports.run = async function (api, event, args, client) {
             msgs += 'show: xem thông tin hiện tại của bản thân!\n'
             msgs += 'buy [spin/coin] [Số lượng!] ( 1$ -> 1 coin, 100$ -> 1 spin): Mua vật phẩm!\n'
             msgs += 'spin [số lần quay]: quay!\n'
-            msgs += 'sell [số coin]: chuyển coin sang money(200 coin -> 1$)!\n'
+            msgs += 'sell [số coin]: chuyển coin sang money(1000 coin -> 1$)!\n'
             msgs += 'update: Nâng cấp đảo!\n'
             api.sendMessage(msgs, event.threadID, event.messageID)
             break;
@@ -199,11 +199,12 @@ module.exports.run = async function (api, event, args, client) {
             if(coin < 100000) return api.sendMessage('Cần tối thiểu 100,000 coin', event.threadID, event.messageID)
             if(find.coin < coin) return api.sendMessage('Bạn không đủ coin', event.threadID, event.messageID)
             find.coin -= coin
-            player.money += coin/200
-            api.sendMessage(`Bạn đã rút thành công ${(coin/200).toLocaleString('en-US')}`, event.threadID, event.messageID)
+            player.money += coin/1000
+            api.sendMessage(`Bạn đã rút thành công ${(coin/1000).toLocaleString('en-US')}$`, event.threadID, event.messageID)
             break;
             
         case 'update':
+            if(!find) return api.sendMessage('Bạn chưa có tài khoản!', event.threadID, event.messageID)
             let msg = `Đảo ${Island.level}: ${Island.name}\n-----------------------------------------\nChọn mục cần nâng cấp!\n-----------------------------------------\n`
             msg += `1, Nhà (${find.house}/5) -${(Island.priceHouse/5).toLocaleString('en-US')}$-\n`
             msg += `2, Xe (${find.car}/5) -${(Island.priceCar/5).toLocaleString('en-US')}$-\n`

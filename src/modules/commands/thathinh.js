@@ -1,5 +1,5 @@
-const request = require('request');
-
+const path = require('path');
+const fs = require('fs');
 module.exports.config = {
     name: 'tt',
     version: '1.0.0',
@@ -7,47 +7,18 @@ module.exports.config = {
     description: 'Thơ thả thính ',
     usage: '!tt '
 };
-
+let thathinh =[]
+const filePath = path.join(__dirname, '..', '..', 'savefile', 'thathinh.json');
+try {
+    const duLieuHienTaiJSON = fs.readFileSync(filePath, 'utf8');
+    thathinh = JSON.parse(duLieuHienTaiJSON);
+} catch (err) {
+    console.error('Lỗi khi đọc tt file:', err);
+}
 module.exports.run = async function (api, event, args, client) {
-    const key = [
-        'JRTfree_8387056913',
-        'JRTfree_5220578604',
-        'JRTfree_6503368536',
-        'JRTfree_9565404844'
-    ]
-    const i = Math.floor(Math.random() * key.length);
-    return api.sendMessage('Tính năng tạm thời không khả dụng', event.threadID,event.messageID);
-    request(`https://docs-api.jrtxtracy.repl.co/saying/hearing?apikey=${key[i]}`, (err, response, body) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
+    
+    const i = Math.floor(Math.random() * thathinh.length);
+    api.sendMessage(thathinh[i], event.threadID, event.messageID)
 
-        console.log(body);
-        const data = JSON.parse(body);
-        const msg = data.data
-
-        const id = client.money.find(item => item.ID == event.senderID&&item.threadID == event.threadID);
-        if (id) {
-            if (id.money<=100) {
-                api.sendMessage('bạn quá nghèo để thực hiện hành động này, cần tối thiểu 100$', event.threadID,event.messageID);
-            }else{
-                api.sendMessage(msg+'\nĐã trừ 100$', event.threadID,(error, info) => {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        
-                    }
-                },event.messageID);
-                id.money -= 100;
-            }
-        }else{
-            api.sendMessage('bạn quá nghèo để thực hiện hành động này, cần tối thiểu 100$!', event.threadID,event.messageID);
-
-        }
-
-        
-
-    });
 
 }

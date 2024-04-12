@@ -1,4 +1,5 @@
 const request = require('request');
+const he = require('he');
 
 module.exports.config = {
     name: 'quiz',

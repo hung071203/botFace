@@ -54,14 +54,12 @@ module.exports.run = async function (api, event, args, client) {
                     writeStream.on('finish', resolve);
                 });
                 
-                await api.sendMessage('Tải hoàn tất, đang gửi...', event.threadID, event.messageID);
-
                 const stream = fs.createReadStream(filePath);
                 // Gửi video
 
                 const bodyVD = { 
                     attachment: stream, 
-                    body: `${formatFont(res.data.data.title)} \n Đã được ${res.data.data.play_count} lượt xem, ${res.data.data.digg_count} lượt thích và ${res.data.data.comment_count} bình luận!` 
+                    body: `${formatFont(res.data.data.title)} \nTổng lượt xem: ${res.data.data.play_count}\nTim: ${res.data.data.digg_count} \nComment: ${res.data.data.comment_count}` 
                 }
                 await api.sendMessage(bodyVD, event.threadID, event.messageID);
 

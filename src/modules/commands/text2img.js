@@ -15,7 +15,7 @@ module.exports.config = {
   
 module.exports.run = async function (api, event, args, client) {
 
-    if (args.leng == 1) return api.sendMessage('Cú pháp không hợp lệ, dùng !t2i[kiểu ảnh(help để xem chi tiết các kiểu ảnh đầu ra)] [noi dung muon tao]', event.threadID, event.messageID);
+    if (args.length == 1) return api.sendMessage('Cú pháp không hợp lệ, dùng !t2i[kiểu ảnh(help để xem chi tiết các kiểu ảnh đầu ra)] [noi dung muon tao]', event.threadID, event.messageID);
     const validKeywords = [
         '3d-model', 'analog', 'anime', 'cinematic', 'comic-book', 'craft-clay',
         'digital-art', 'enhance', 'fantasy-art', 'isometric', 'line-art', 'lowpoly',

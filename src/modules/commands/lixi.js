@@ -30,18 +30,14 @@ module.exports.run = async function (api, event, args, client) {
     const recipients = client.money.filter(item => item.threadID === threadID && item.ID !== senderID);
     
     let msg = `Tổng: ${mn.toLocaleString('en-US')}$\n`;
-
+    let mnp = mn/recipients.length
     recipients.forEach((recipient, index) => {
-        const tmn = index === recipients.length - 1 ? mn : Math.floor(Math.random() * mn) + 1;
-        const recipientAccount = client.money.find(item => item.ID === recipient.ID && item.threadID === recipient.threadID);
-        
-        console.log(recipientAccount);
-        recipientAccount.money += tmn;
+        recipient.money += mnp
 
-        console.log(recipientAccount);
-        msg += `${recipientAccount.name} được chia ${tmn.toLocaleString('en-US')}$\n`;
-        mn -= tmn;
     });
+    msg += `Mỗi người được chia ${mnp.toLocaleString('en-US')}$`
 
     api.sendMessage(msg, threadID, event.messageID);
 };
+
+

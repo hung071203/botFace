@@ -1,9 +1,3 @@
-const puppeteer = require('puppeteer');
-let fs = require('fs');
-
-const path = require('path');
-const axios = require('axios');
-
 module.exports.config = {
     name: 'checknoti',
     version: '1.0.0',
@@ -14,13 +8,17 @@ module.exports.config = {
 
 
 
-module.exports.run = async function (api, event, args, client) {
-    // Hàm được thực thi khi sự kiện xảy ra
+module.exports.run = async function (api, event, client) {
     if (!event) {
         return;
     }
-    if (event.type == 'message') {
-        const inputURL = event.body.toLowerCase(); // Giả sử args[0] là đường dẫn cần kiểm tra
+    return
+    if (event.type == 'message' || event.type == 'message_reply') {
+        let checkBT = client.QTVOL.find(e=> e.threadID == event.threadID)
+        if(client.QTVOL.length == 0) return 
+        if(typeof checkBT == 'undefined' || checkBT.time < parseInt(event.timestamp)) return 
+
+        const inputURL = event.body.toLowerCase(); 
         console.log(inputURL);
         const chui = [
             "Bố mẹ đẻ ra để m chửi bậy thế à?",
@@ -30,46 +28,25 @@ module.exports.run = async function (api, event, args, client) {
             "nói tiếng người đi bạn",
             "Chửi bậy là một biểu hiện của sự vô học"
         ]
-        const ngu = [
-            'T không ngu, có m thôi!',
-            '??, có m ngu',
-            "Ngu sao bàng m:))",
-            "fuck you🖕",
-            "lol, m ngu(╬▔皿▔)╯",
-            "🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕🖕"
-        ]
-        const pipi = [
-            "đi đi không tiễn ಥ_ಥ",
-            "kut nhanh",
-            "Ra đi thanh 👍",
-            "Paipai",
-            "biến nhanh",
-            "ò, kut:)))"
-        ]
+        
+        
         if(inputURL.includes(process.env.PREFIX)) return
         const i = Math.floor(Math.random() * 6);
-        let argsAD = process.env.ADMIN.trim().split(' ');
-        let checkAD = argsAD.find(item => item == event.senderID)
-        if (checkAD) {
-            
-        }else{
-            if (inputURL.includes('bot') && inputURL.includes('ngu') ) {
-                api.sendMessage(ngu[i], event.threadID, event.messageID);
-            }
-            else if (inputURL.includes('bot')) {
-                api.sendMessage('bot đây(o゜▽゜)o☆', event.threadID, event.messageID);
-              } 
-            //   if (inputURL.includes('dm') || inputURL.includes('chó') || inputURL.includes('lồn') || inputURL.includes('lon') || inputURL.includes(' cc') || inputURL.includes('dit') || inputURL.includes('địt') || inputURL.includes('cm') || inputURL.includes('lol') || inputURL.includes('dell') || inputURL.includes('đéo') ) {
-            //     api.sendMessage(chui[i], event.threadID, event.messageID);
-      
-            //   }
-              
-              
-        }
-        if (inputURL.includes('pp')) {
-            api.sendMessage(pipi[i], event.threadID, event.messageID);
-  
-        }
         
+
+        const keychui = /(dm|chó|lồn|lon| cc|dit|địt|cm|lol|dell|đéo|sv)/
+        const keyngu =/(ngu | đần|)/
+        const keyiu = /(iu|yêu|thích)/
+        const keyname = /(t|tao|tớ|mình|m|mày|cậu)/
+
+        
+
+        if(!inputURL.includes('bot')) {
+            if (keychui.test(inputURL)) return  api.sendMessage(chui[Math.floor(Math.random() * chui.length)], event.threadID, event.messageID);
+        }else{
+            if (keychui.test(inputURL)) return  api.sendMessage('clm mày nungws hả:)?', event.threadID, event.messageID);
+            if (keyiu.test(inputURL) || (keyiu.test(inputURL) && keyname.test(inputURL))) return  api.sendMessage('Tớ thích cậu lắm á:>', event.threadID, event.messageID);
+            if (keyngu.test(inputURL)) return  api.sendMessage('Lại ngáo chó r!', event.threadID, event.messageID);    
+        }
     }
 }

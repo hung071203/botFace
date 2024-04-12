@@ -25,6 +25,6 @@ module.exports.run = async function (api, event, args, client) {
         id.timeL = parseInt(event.timestamp);
     }
     
-    api.sendMessage(`Bạn đã gửi ${mn.toLocaleString('en-US')}$ với lãi suất 7%/1h`, event.threadID, event.messageID);
+    api.sendMessage(`Bạn đã gửi ${mn.toLocaleString('en-US')}$ với lãi suất 7%/day`, event.threadID, event.messageID);
 
 }

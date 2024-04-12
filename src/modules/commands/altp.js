@@ -68,6 +68,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
     console.log('hahi',check);
     if(!check) return;
     if(check.author != event.senderID) return;
+    if(check.messageID != event.messageReply.messageID) return
     if (event.timestamp > check.time + 10 * 1000) {
         api.sendMessage('Đã hết thời gian cho phép, bạn đã thua!', event.threadID, event.messageID);
         client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID);

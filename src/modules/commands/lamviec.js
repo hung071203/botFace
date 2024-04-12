@@ -21,8 +21,9 @@ module.exports.run = async function (api, event, args, client) {
     ];
     console.log(event);
     const rd = Math.floor(Math.random() * 7);
-    const rdM = Math.floor(Math.random() * 1000) + 1200;
+    const rdM = Math.floor(Math.random() * 1000) + 120;
     const id = client.money.find(item => item.ID == event.senderID && item.threadID == event.threadID);
+    if(!id) return api.sendMessage(`Có lỗi phát sinh, thử lại`, event.threadID, event.messageID);
     if (id.time != 0 && id.time + 5*60*1000 > event.timestamp) {
         var date = new Date(id.time + 5*60*1000);
         

@@ -23,6 +23,11 @@ module.exports.run = async function (api, event, args, client) {
           api.sendMessage('Reset thành công!', event.threadID,event.messageID);
             
         }else{
+          if(args[1] == 'all'){
+            client.money = client.money.filter(item => item.threadID != event.threadID)
+            
+            return api.sendMessage('reset toàn bộ nhóm thành công!', event.threadID,event.messageID);
+          }
             api.sendMessage('Số tài khoản không tồn tại', event.threadID,event.messageID);
 
         }

@@ -42,7 +42,19 @@ module.exports.run = async function (api, event, args, client) {
   });
   groupedCommandInfo.push(`----------------------------------------------------------------------\n Tổng có ${i} lệnh có thể hoạt động!`);
   // Gửi thông điệp chứa thông tin về các lệnh đã nhóm lại theo tag
-  api.sendMessage(groupedCommandInfo.join('\n\n'), event.threadID, event.messageID);
+  api.sendMessage(groupedCommandInfo.join('\n\n'), event.threadID, (error, info) => {
+    if (error) {
+        console.log(error);
+    } else {
+        client.umessage.push({
+            type: 'unsend',
+            name: this.config.name,
+            messageID: info.messageID,
+            author: event.senderID,
+        })
+        
+    }
+}, event.messageID);
 };
   
 

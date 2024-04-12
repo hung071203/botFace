@@ -17,7 +17,7 @@ module.exports.run = async function (api, event, client) {
     if (!event) {
         return;
     }
-    if (event.type == 'message' || event.type == 'message_reply') {
+    if (event.type == 'message' || event.type == 'message_reply' && event.isGroup == true) {
         
         if (client.unsend.length == 0) {
             try {
@@ -84,6 +84,7 @@ module.exports.run = async function (api, event, client) {
             }
         });
         let checkQTV = client.QTVOL.find(item => item.threadID == event.threadID);
+        if(!checkQTV) return
         if(checkQTV.remess == 0) return;
         
         const idm = event.messageID;

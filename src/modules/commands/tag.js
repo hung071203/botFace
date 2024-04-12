@@ -8,7 +8,7 @@ module.exports.config = {
     tag: 'system',
     usage: '!tag [tên người dùng] [nội dung] [số lần gắn thẻ]'
 };
-
+let countBan = []
 module.exports.run = async function (api, event, args, client) {
     console.log(event, args);
     // Kiểm tra xem số lượng đối số có đúng không
@@ -25,6 +25,34 @@ module.exports.run = async function (api, event, args, client) {
     const countU = name.split(' ').length;
     const content = args.slice(countU + 1, -1).join(' ');
     let tagCount = parseInt(args[args.length - 1]);
+
+    let find  = client.Ban.find(item => item.threadID == event.threadID && item.ID == event.senderID)
+    let findCB = countBan.find(item => item.threadID == event.threadID && item.ID == event.senderID)
+    if(!findCB){
+        countBan.push({
+            ID: event.senderID,
+            threadID: event.threadID,
+            a: tagCount,
+            b: 0
+        })
+        findCB = countBan.find(item => item.threadID == event.threadID && item.ID == event.senderID)
+    }else{
+        findCB.b = findCB.a
+        findCB.a = tagCount
+    }
+    if(findCB.a + findCB.b > 40) {
+        if (!find) {
+            client.Ban.push({
+                threadID: event.threadID,
+                ID: event.senderID,
+                timestamp: parseInt(event.timestamp) + 5 * 60 * 1000
+            })
+            
+        }else{
+            find.timestamp = parseInt(event.timestamp) + 5 * 60 * 1000
+        }
+        return api.sendMessage('M định spam đúng không, t khóa mõm m 5 phút!', event.threadID, event.messageID)
+    }
 
     // Kiểm tra hợp lệ của tên người dùng
     if (!username || !username.trim()) {
@@ -58,7 +86,7 @@ module.exports.run = async function (api, event, args, client) {
             ]
         }
         api.sendMessage(msg, event.threadID);
-        await sleep(800);
+        await sleep(1000);
     }
 };
 

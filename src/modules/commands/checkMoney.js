@@ -9,9 +9,20 @@ module.exports.config = {
   
   
 module.exports.run = async function (api, event, args, client) {
+
+    
     const id = client.money.find(item => item.ID == event.senderID && item.threadID == event.threadID);
         if (id) {
-           api.sendMessage(`Tên người dùng: ${id.name} \nSố tài khoản: ${id.ID} \nsố tiền hiện tại: ${id.money.toLocaleString('en-US')}$\nsố tiền hiện tại trong lợn: ${id.moneyL.toLocaleString('en-US')}$\nsố nợ hiện tại: ${id.moneyV.toLocaleString('en-US')}$(+10%/1h)`, event.threadID,(error, info) => {
+            let msgs = `Tên người dùng: ${id.name} \n-------------------------------------------------------------\nSố tài khoản: ${id.ID} \n-------------------------------------------------------------\nsố tiền hiện tại: ${id.money.toLocaleString('en-US')}$\n-------------------------------------------------------------\nsố tiền hiện tại trong lợn: ${id.moneyL.toLocaleString('en-US')}$(+7%/day, tối đa 999,999,999$)\n-------------------------------------------------------------\nsố nợ hiện tại: ${id.moneyV.toLocaleString('en-US')}$(+10%/1day)\n-------------------------------------------------------------\n`
+            msgs += '\n Thông tin các đồng crypto đang sở hữu!\n\n'
+            if(id.crypto.length == 0){
+                msgs += 'Trống'
+            }else{
+                id.crypto.forEach(element => {
+                    msgs += `Tên: ${element.name}, Số lượng: ${element.amount}\n`
+                });
+            }
+           api.sendMessage(msgs, event.threadID,(error, info) => {
                 if (error) {
                     console.log(error);
                 } else {

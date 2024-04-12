@@ -25,6 +25,9 @@ var client = {
     coinMaster: new Array(),
     userLevel: new Array(),
     dataLevel: new Array(),
+    Ban: new Array(),
+    botTime: new Array(),
+    crypto: new Array,
     onload: new Array()
   }
 
@@ -42,36 +45,7 @@ handlers.forEach(handler => {
 login(loginPath, (err, api) => {
     if(err) return console.error(err);
     
-    
-
     require(`${__dirname}/core/listen`) (api, client);
 
-    // api.listenMqtt((err, event) => {
-    //     if (err) return console.error(err);
-    //     if (event.threadID) {
-    //         api.getThreadInfo(event.threadID, (err, info) => {
-    //             if (err) {
-    //                 console.log(err);
-    //             } else {
-    //                 console.log(info, event.threadID);
-    //                 if (info.adminIDs.length != countAD-1) {
-    //                     console.log('jdhf '+info.adminIDs.length);
-    //                     countAD = info.adminIDs.length +1;
     
-    //                     for (let index = 0; index < info.adminIDs.length; index++) {
-    //                         client.QTV.push({
-    //                             threadID: event.threadID,
-    //                             adminID: info.adminIDs[index].id
-    //                         })
-                            
-    //                     }
-    //                 }
-                    
-                    
-    //             }
-        
-    //         })
-    //     }
-        
-    // });
 });

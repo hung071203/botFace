@@ -42,7 +42,6 @@ module.exports.run = async function (api, event, args, client) {
                     // Bắt sự kiện khi tải xong
                     response.data.on('end', async () => {
                         console.log('Ảnh đã được tải thành công và lưu vào:', filePath);
-                        api.sendMessage('Đang tìm câu trả lời...', event.threadID, event.messageID);
                         const text = await run(query, filePath);
                         api.sendMessage(text, event.threadID, event.messageID);
                         
@@ -76,17 +75,16 @@ module.exports.run = async function (api, event, args, client) {
         his:[
           {
             role: "user",
-            parts: "Chào bạn!",
+            parts: "Hello!",
           },
           {
             role: "model",
-            parts: "Tôi có thể giúp gì được cho bạn?",
+            parts: "Hi, can i help you?",
           }
         ]
       })
       findHis = chatHis.find(item => item.ID == event.senderID)
     }
-    api.sendMessage('Đang tìm câu trả lời...', event.threadID, event.messageID);
     const text = await runN(query, findHis.his);
     findHis.his.push({
       role: "user",

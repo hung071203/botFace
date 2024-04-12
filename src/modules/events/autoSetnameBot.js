@@ -7,6 +7,7 @@ module.exports.config = {
 }
 
 module.exports.run = function (api, event, args, client) {
+    return
     if (!event) {
         return;
     }

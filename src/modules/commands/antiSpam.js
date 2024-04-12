@@ -1,10 +1,10 @@
 module.exports.config = {
-    name: "ats",
+    name: "stop",
     version: "1.0.0",
     credits: "Ralph",
-    description: "Chan spam tag",
+    description: "Chan spam ",
     tag: 'system',
-    usage: "!ats",
+    usage: "!stop",
 };
   
   

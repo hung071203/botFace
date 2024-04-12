@@ -1,0 +1,50 @@
+[
+  {
+    "threadID": "6849016401860798",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": true,
+    "antiJoin": false,
+    "time": 1717511963460
+  },
+  {
+    "threadID": "7192101607500816",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": true,
+    "time": 1712343798922
+  },
+  {
+    "threadID": "7110950285621421",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": true,
+    "antiJoin": true,
+    "time": 1712488681685
+  },
+  {
+    "threadID": "7120492684638139",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": true,
+    "time": 1712595187809
+  },
+  {
+    "threadID": "7573907599309673",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": false,
+    "antiJoin": true,
+    "time": 1799244627458
+  },
+  {
+    "threadID": "6732345626838256",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1712836286266
+  }
+]
