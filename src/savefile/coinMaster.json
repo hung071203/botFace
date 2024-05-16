@@ -1,0 +1,902 @@
+[
+    {
+        "level": 1,
+        "name": "Land of Vikings",
+        "priceTree": 310000,
+        "pricePet": 465000,
+        "priceHouse": 930000,
+        "priceCar": 775000,
+        "pricePool": 620000
+    },
+    {
+        "level": 2,
+        "name": "Ancient Egypt",
+        "priceTree": 520000,
+        "pricePet": 780000,
+        "priceHouse": 1560000,
+        "priceCar": 1300000,
+        "pricePool": 1040000
+    },
+    {
+        "level": 3,
+        "name": "Snowy Alps",
+        "priceTree": 950000,
+        "pricePet": 1425000,
+        "priceHouse": 2850000,
+        "priceCar": 2375000,
+        "pricePool": 1900000
+    },
+    {
+        "level": 4,
+        "name": "Inca",
+        "priceTree": 1320000,
+        "pricePet": 1980000,
+        "priceHouse": 3960000,
+        "priceCar": 3300000,
+        "pricePool": 2640000
+    },
+    {
+        "level": 5,
+        "name": "Far East",
+        "priceTree": 1630000,
+        "pricePet": 2445000,
+        "priceHouse": 4890000,
+        "priceCar": 4075000,
+        "pricePool": 3260000
+    },
+    {
+        "level": 6,
+        "name": "Stone Age",
+        "priceTree": 1740000,
+        "pricePet": 2610000,
+        "priceHouse": 5220000,
+        "priceCar": 4350000,
+        "pricePool": 3480000
+    },
+    {
+        "level": 7,
+        "name": "Sunny Hawaii",
+        "priceTree": 2060000,
+        "pricePet": 3090000,
+        "priceHouse": 6180000,
+        "priceCar": 5150000,
+        "pricePool": 4120000
+    },
+    {
+        "level": 8,
+        "name": "Troy",
+        "priceTree": 2580000,
+        "pricePet": 3870000,
+        "priceHouse": 7740000,
+        "priceCar": 6450000,
+        "pricePool": 5160000
+    },
+    {
+        "level": 9,
+        "name": "Africa",
+        "priceTree": 3100000,
+        "pricePet": 4650000,
+        "priceHouse": 9300000,
+        "priceCar": 7750000,
+        "pricePool": 6200000
+    },
+    {
+        "level": 10,
+        "name": "Atlantis",
+        "priceTree": 3480000,
+        "pricePet": 5220000,
+        "priceHouse": 10440000,
+        "priceCar": 8700000,
+        "pricePool": 6960000
+    },
+    {
+        "level": 11,
+        "name": "The Future",
+        "priceTree": 3580000,
+        "pricePet": 5370000,
+        "priceHouse": 10740000,
+        "priceCar": 8950000,
+        "pricePool": 7160000
+    },
+    {
+        "level": 12,
+        "name": "Woodstock",
+        "priceTree": 3740000,
+        "pricePet": 5610000,
+        "priceHouse": 11220000,
+        "priceCar": 9350000,
+        "pricePool": 7480000
+    },
+    {
+        "level": 13,
+        "name": "Arabian Nights",
+        "priceTree": 4100000,
+        "pricePet": 6150000,
+        "priceHouse": 12300000,
+        "priceCar": 10250000,
+        "pricePool": 8200000
+    },
+    {
+        "level": 14,
+        "name": "Moon Landing",
+        "priceTree": 4280000,
+        "pricePet": 6420000,
+        "priceHouse": 12840000,
+        "priceCar": 10700000,
+        "pricePool": 8560000
+    },
+    {
+        "level": 15,
+        "name": "Wild West",
+        "priceTree": 5830000,
+        "pricePet": 8745000,
+        "priceHouse": 17490000,
+        "priceCar": 14575000,
+        "pricePool": 11660000
+    },
+    {
+        "level": 16,
+        "name": "Netherland",
+        "priceTree": 6000000,
+        "pricePet": 9000000,
+        "priceHouse": 18000000,
+        "priceCar": 15000000,
+        "pricePool": 12000000
+    },
+    {
+        "level": 17,
+        "name": "Jungle",
+        "priceTree": 6400000,
+        "pricePet": 9600000,
+        "priceHouse": 19200000,
+        "priceCar": 16000000,
+        "pricePool": 12800000
+    },
+    {
+        "level": 18,
+        "name": "Wonderland",
+        "priceTree": 6720000,
+        "pricePet": 10080000,
+        "priceHouse": 20160000,
+        "priceCar": 16800000,
+        "pricePool": 13440000
+    },
+    {
+        "level": 19,
+        "name": "Miners",
+        "priceTree": 6990000,
+        "pricePet": 10485000,
+        "priceHouse": 20970000,
+        "priceCar": 17475000,
+        "pricePool": 13980000
+    },
+    {
+        "level": 20,
+        "name": "The Arctic",
+        "priceTree": 7490000,
+        "pricePet": 11235000,
+        "priceHouse": 22470000,
+        "priceCar": 18725000,
+        "pricePool": 14980000
+    },
+    {
+        "level": 21,
+        "name": "Apocalypse",
+        "priceTree": 7620000,
+        "pricePet": 11430000,
+        "priceHouse": 22860000,
+        "priceCar": 19050000,
+        "pricePool": 15240000
+    },
+    {
+        "level": 22,
+        "name": "Candy Land",
+        "priceTree": 7920000,
+        "pricePet": 11880000,
+        "priceHouse": 23760000,
+        "priceCar": 19800000,
+        "pricePool": 15840000
+    },
+    {
+        "level": 23,
+        "name": "Army Camp",
+        "priceTree": 8020000,
+        "pricePet": 12030000,
+        "priceHouse": 24060000,
+        "priceCar": 20050000,
+        "pricePool": 16040000
+    },
+    {
+        "level": 24,
+        "name": "Halloween",
+        "priceTree": 8400000,
+        "pricePet": 12600000,
+        "priceHouse": 25200000,
+        "priceCar": 21000000,
+        "pricePool": 16800000
+    },
+    {
+        "level": 25,
+        "name": "The Tribe",
+        "priceTree": 810000,
+        "pricePet": 1215000,
+        "priceHouse": 2430000,
+        "priceCar": 2025000,
+        "pricePool": 1620000
+    },
+    {
+        "level": 26,
+        "name": "Australia",
+        "priceTree": 8880000,
+        "pricePet": 13320000,
+        "priceHouse": 26640000,
+        "priceCar": 22200000,
+        "pricePool": 17760000
+    },
+    {
+        "level": 27,
+        "name": "Columbus",
+        "priceTree": 8690000,
+        "pricePet": 13035000,
+        "priceHouse": 26070000,
+        "priceCar": 21725000,
+        "pricePool": 17380000
+    },
+    {
+        "level": 28,
+        "name": "Mexico",
+        "priceTree": 9260000,
+        "pricePet": 13890000,
+        "priceHouse": 27780000,
+        "priceCar": 23150000,
+        "pricePool": 18520000
+    },
+    {
+        "level": 29,
+        "name": "Magical Forest",
+        "priceTree": 9680000,
+        "pricePet": 14520000,
+        "priceHouse": 29040000,
+        "priceCar": 24200000,
+        "pricePool": 19360000
+    },
+    {
+        "level": 30,
+        "name": "India",
+        "priceTree": 10220000,
+        "pricePet": 15330000,
+        "priceHouse": 30660000,
+        "priceCar": 25550000,
+        "pricePool": 20440000
+    },
+    {
+        "level": 31,
+        "name": "The 50's",
+        "priceTree": 10680000,
+        "pricePet": 16020000,
+        "priceHouse": 32040000,
+        "priceCar": 26700000,
+        "pricePool": 21360000
+    },
+    {
+        "level": 32,
+        "name": "Thailand",
+        "priceTree": 11380000,
+        "pricePet": 17070000,
+        "priceHouse": 34140000,
+        "priceCar": 28450000,
+        "pricePool": 22760000
+    },
+    {
+        "level": 33,
+        "name": "Coin Manor",
+        "priceTree": 11890000,
+        "pricePet": 17835000,
+        "priceHouse": 35670000,
+        "priceCar": 29725000,
+        "pricePool": 23860000
+    },
+    {
+        "level": 34,
+        "name": "Dragon Lair",
+        "priceTree": 12310000,
+        "pricePet": 18465000,
+        "priceHouse": 36930000,
+        "priceCar": 30775000,
+        "pricePool": 24620000
+    },
+    {
+        "level": 35,
+        "name": "Greek Island",
+        "priceTree": 12990000,
+        "pricePet": 19485000,
+        "priceHouse": 38970000,
+        "priceCar": 32475000,
+        "pricePool": 25980000
+    },
+    {
+        "level": 36,
+        "name": "LA Dreams",
+        "priceTree": 13180000,
+        "pricePet": 19770000,
+        "priceHouse": 39540000,
+        "priceCar": 32950000,
+        "pricePool": 26360000
+    },
+    {
+        "level": 37,
+        "name": "The Wizard",
+        "priceTree": 13780000,
+        "pricePet": 20670000,
+        "priceHouse": 41340000,
+        "priceCar": 34450000,
+        "pricePool": 27560000
+    },
+    {
+        "level": 38,
+        "name": "Oil Tyrant",
+        "priceTree": 14680000,
+        "pricePet": 22020000,
+        "priceHouse": 44040000,
+        "priceCar": 36700000,
+        "pricePool": 29360000
+    },
+    {
+        "level": 39,
+        "name": "La Familia",
+        "priceTree": 15340000,
+        "pricePet": 23010000,
+        "priceHouse": 46020000,
+        "priceCar": 38350000,
+        "pricePool": 30680000
+    },
+    {
+        "level": 40,
+        "name": "Area 51",
+        "priceTree": 16190000,
+        "pricePet": 24285000,
+        "priceHouse": 48570000,
+        "priceCar": 40475000,
+        "pricePool": 32380000
+    },
+    {
+        "level": 41,
+        "name": "Night of the Dead",
+        "priceTree": 16920000,
+        "pricePet": 25380000,
+        "priceHouse": 50760000,
+        "priceCar": 42300000,
+        "pricePool": 33840000
+    },
+    {
+        "level": 42,
+        "name": "Steampunk Land",
+        "priceTree": 18030000,
+        "pricePet": 27045000,
+        "priceHouse": 54090000,
+        "priceCar": 45075000,
+        "pricePool": 36060000
+    },
+    {
+        "level": 43,
+        "name": "The Zoo",
+        "priceTree": 18850000,
+        "pricePet": 28275000,
+        "priceHouse": 56550000,
+        "priceCar": 47125000,
+        "pricePool": 37700000
+    },
+    {
+        "level": 44,
+        "name": "Russia",
+        "priceTree": 19510000,
+        "pricePet": 29265000,
+        "priceHouse": 58530000,
+        "priceCar": 48775000,
+        "pricePool": 39020000
+    },
+    {
+        "level": 45,
+        "name": "Musketeers",
+        "priceTree": 20590000,
+        "pricePet": 30885000,
+        "priceHouse": 61770000,
+        "priceCar": 51475000,
+        "pricePool": 41180000
+    },
+    {
+        "level": 46,
+        "name": "Lady Bug",
+        "priceTree": 20900000,
+        "pricePet": 31350000,
+        "priceHouse": 62700000,
+        "priceCar": 52250000,
+        "pricePool": 41800000
+    },
+    {
+        "level": 47,
+        "name": "Theme Park",
+        "priceTree": 21840000,
+        "pricePet": 32760000,
+        "priceHouse": 65520000,
+        "priceCar": 54600000,
+        "pricePool": 43680000
+    },
+    {
+        "level": 48,
+        "name": "Tibet",
+        "priceTree": 23270000,
+        "pricePet": 34905000,
+        "priceHouse": 69810000,
+        "priceCar": 58175000,
+        "pricePool": 46540000
+    },
+    {
+        "level": 49,
+        "name": "Hell",
+        "priceTree": 24320000,
+        "pricePet": 36480000,
+        "priceHouse": 72960000,
+        "priceCar": 60800000,
+        "pricePool": 48640000
+    },
+    {
+        "level": 50,
+        "name": "Easter",
+        "priceTree": 25660000,
+        "pricePet": 38490000,
+        "priceHouse": 76980000,
+        "priceCar": 64150000,
+        "pricePool": 51320000
+    },
+    {
+        "level": 51,
+        "name": "Japan",
+        "priceTree": 26820000,
+        "pricePet": 40230000,
+        "priceHouse": 80460000,
+        "priceCar": 67050000,
+        "pricePool": 53640000
+    },
+    {
+        "level": 52,
+        "name": "Swamp",
+        "priceTree": 28570000,
+        "pricePet": 42855000,
+        "priceHouse": 85710000,
+        "priceCar": 71425000,
+        "pricePool": 57140000
+    },
+    {
+        "level": 53,
+        "name": "Wizard of Oz",
+        "priceTree": 29870000,
+        "pricePet": 44805000,
+        "priceHouse": 89610000,
+        "priceCar": 74675000,
+        "pricePool": 59740000
+    },
+    {
+        "level": 54,
+        "name": "Timbuktu",
+        "priceTree": 32060000,
+        "pricePet": 48090000,
+        "priceHouse": 96180000,
+        "priceCar": 80150000,
+        "pricePool": 64120000
+    },
+    {
+        "level": 55,
+        "name": "Jurassic Ville",
+        "priceTree": 34690000,
+        "pricePet": 52035000,
+        "priceHouse": 104070000,
+        "priceCar": 86775000,
+        "pricePool": 69400000
+    },
+    {
+        "level": 56,
+        "name": "Canada",
+        "priceTree": 34800000,
+        "pricePet": 52200000,
+        "priceHouse": 104400000,
+        "priceCar": 87000000,
+        "pricePool": 69600000
+    },
+    {
+        "level": 57,
+        "name": "Mongolia",
+        "priceTree": 36840000,
+        "pricePet": 55260000,
+        "priceHouse": 110520000,
+        "priceCar": 92150000,
+        "pricePool": 73720000
+    },
+    {
+        "level": 58,
+        "name": "Jacks Beanstalks",
+        "priceTree": 38400000,
+        "pricePet": 57600000,
+        "priceHouse": 115200000,
+        "priceCar": 96000000,
+        "pricePool": 76800000
+    },
+    {
+        "level": 59,
+        "name": "Scotland",
+        "priceTree": 40980000,
+        "pricePet": 61470000,
+        "priceHouse": 122940000,
+        "priceCar": 102450000,
+        "pricePool": 81960000
+    },
+    {
+        "level": 60,
+        "name": "Robin Hood",
+        "priceTree": 43310000,
+        "pricePet": 64965000,
+        "priceHouse": 129930000,
+        "priceCar": 108275000,
+        "pricePool": 86620000
+    },
+    {
+        "level": 61,
+        "name": "Deep Sea",
+        "priceTree": 45320000,
+        "pricePet": 67980000,
+        "priceHouse": 135960000,
+        "priceCar": 113300000,
+        "pricePool": 90640000
+    },
+    {
+        "level": 62,
+        "name": "Don Quixote",
+        "priceTree": 48340000,
+        "pricePet": 72510000,
+        "priceHouse": 145020000,
+        "priceCar": 120850000,
+        "pricePool": 96720000
+    },
+    {
+        "level": 63,
+        "name": "Colosseum",
+        "priceTree": 50520000,
+        "pricePet": 75780000,
+        "priceHouse": 151560000,
+        "priceCar": 126300000,
+        "pricePool": 101040000
+    },
+    {
+        "level": 64,
+        "name": "Cat Castle",
+        "priceTree": 52300000,
+        "pricePet": 78450000,
+        "priceHouse": 156900000,
+        "priceCar": 130750000,
+        "pricePool": 104600000
+    },
+    {
+        "level": 65,
+        "name": "Olympus",
+        "priceTree": 55180000,
+        "pricePet": 82770000,
+        "priceHouse": 165540000,
+        "priceCar": 137950000,
+        "pricePool": 110360000
+    },
+    {
+        "level": 66,
+        "name": "Trolls",
+        "priceTree": 56570000,
+        "pricePet": 84855000,
+        "priceHouse": 169710000,
+        "priceCar": 141425000,
+        "pricePool": 113140000
+    },
+    {
+        "level": 67,
+        "name": "Aliens",
+        "priceTree": 59130000,
+        "pricePet": 88695000,
+        "priceHouse": 177390000,
+        "priceCar": 147825000,
+        "pricePool": 118260000
+    },
+    {
+        "level": 68,
+        "name": "Da Vinci",
+        "priceTree": 62990000,
+        "pricePet": 94485000,
+        "priceHouse": 188970000,
+        "priceCar": 157475000,
+        "pricePool": 125980000
+    },
+    {
+        "level": 69,
+        "name": "Sand Land",
+        "priceTree": 65840000,
+        "pricePet": 98760000,
+        "priceHouse": 197520000,
+        "priceCar": 164600000,
+        "pricePool": 131680000
+    },
+    {
+        "level": 70,
+        "name": "Elves",
+        "priceTree": 69470000,
+        "pricePet": 104205000,
+        "priceHouse": 208410000,
+        "priceCar": 173675000,
+        "pricePool": 138940000
+    },
+    {
+        "level": 71,
+        "name": "Switzerland",
+        "priceTree": 72620000,
+        "pricePet": 108930000,
+        "priceHouse": 217860000,
+        "priceCar": 181550000,
+        "pricePool": 145240000
+    },
+    {
+        "level": 72,
+        "name": "Truckers",
+        "priceTree": 77350000,
+        "pricePet": 116025000,
+        "priceHouse": 232050000,
+        "priceCar": 193375000,
+        "pricePool": 154700000
+    },
+    {
+        "level": 73,
+        "name": "Spain",
+        "priceTree": 80850000,
+        "pricePet": 121275000,
+        "priceHouse": 242550000,
+        "priceCar": 202125000,
+        "pricePool": 161700000
+    },
+    {
+        "level": 74,
+        "name": "Little Red",
+        "priceTree": 83700000,
+        "pricePet": 125550000,
+        "priceHouse": 251100000,
+        "priceCar": 209250000,
+        "pricePool": 167400000
+    },
+    {
+        "level": 75,
+        "name": "Unicorn",
+        "priceTree": 88320000,
+        "pricePet": 132480000,
+        "priceHouse": 264960000,
+        "priceCar": 220800000,
+        "pricePool": 176640000
+    },
+    {
+        "level": 76,
+        "name": "Scientist",
+        "priceTree": 89650000,
+        "pricePet": 134475000,
+        "priceHouse": 268950000,
+        "priceCar": 224125000,
+        "pricePool": 179300000
+    },
+    {
+        "level": 77,
+        "name": "Romania",
+        "priceTree": 93700000,
+        "pricePet": 140550000,
+        "priceHouse": 281100000,
+        "priceCar": 234250000,
+        "pricePool": 187400000
+    },
+    {
+        "level": 78,
+        "name": "Courthouse",
+        "priceTree": 99820000,
+        "pricePet": 149730000,
+        "priceHouse": 299460000,
+        "priceCar": 249550000,
+        "pricePool": 199640000
+    },
+    {
+        "level": 79,
+        "name": "Tin Soldier",
+        "priceTree": 104000000,
+        "pricePet": 156000000,
+        "priceHouse": 312000000,
+        "priceCar": 260000000,
+        "pricePool": 208000000
+    },
+    {
+        "level": 80,
+        "name": "Crazy Bride",
+        "priceTree": 110000000,
+        "pricePet": 165000000,
+        "priceHouse": 330000000,
+        "priceCar": 275000000,
+        "pricePool": 220000000
+    },
+    {
+        "level": 81,
+        "name": "Pilot",
+        "priceTree": 115000000,
+        "pricePet": 172500000,
+        "priceHouse": 345000000,
+        "priceCar": 287500000,
+        "pricePool": 230000000
+    },
+    {
+        "level": 82,
+        "name": "Fairy Tale",
+        "priceTree": 122000000,
+        "pricePet": 183000000,
+        "priceHouse": 366000000,
+        "priceCar": 305000000,
+        "pricePool": 244000000
+    },
+    {
+        "level": 83,
+        "name": "Car Racing",
+        "priceTree": 128000000,
+        "pricePet": 192000000,
+        "priceHouse": 384000000,
+        "priceCar": 320000000,
+        "pricePool": 256000000
+    },
+    {
+        "level": 84,
+        "name": "Gnome",
+        "priceTree": 132000000,
+        "pricePet": 198000000,
+        "priceHouse": 396000000,
+        "priceCar": 330000000,
+        "pricePool": 264000000
+    },
+    {
+        "level": 85,
+        "name": "Desert Punk",
+        "priceTree": 139000000,
+        "pricePet": 208500000,
+        "priceHouse": 417000000,
+        "priceCar": 347500000,
+        "pricePool": 278000000
+    },
+    {
+        "level": 86,
+        "name": "Detective",
+        "priceTree": 140000000,
+        "pricePet": 210000000,
+        "priceHouse": 420000000,
+        "priceCar": 350000000,
+        "pricePool": 280000000
+    },
+    {
+        "level": 87,
+        "name": "Baba Yaga",
+        "priceTree": 150000000,
+        "pricePet": 225000000,
+        "priceHouse": 450000000,
+        "priceCar": 375000000,
+        "pricePool": 300000000
+    },
+    {
+        "level": 88,
+        "name": "Barbarian",
+        "priceTree": 170000000,
+        "pricePet": 255000000,
+        "priceHouse": 510000000,
+        "priceCar": 425000000,
+        "pricePool": 340000000
+    },
+    {
+        "level": 89,
+        "name": "Restaurant",
+        "priceTree": 170000000,
+        "pricePet": 255000000,
+        "priceHouse": 510000000,
+        "priceCar": 425000000,
+        "pricePool": 340000000
+    },
+    {
+        "level": 90,
+        "name": "King Arthur",
+        "priceTree": 180000000,
+        "pricePet": 270000000,
+        "priceHouse": 540000000,
+        "priceCar": 450000000,
+        "pricePool": 360000000
+    },
+    {
+        "level": 91,
+        "name": "Sinbad",
+        "priceTree": 180000000,
+        "pricePet": 270000000,
+        "priceHouse": 540000000,
+        "priceCar": 450000000,
+        "pricePool": 360000000
+    },
+    {
+        "level": 92,
+        "name": "Bikers Bar",
+        "priceTree": 200000000,
+        "pricePet": 300000000,
+        "priceHouse": 600000000,
+        "priceCar": 500000000,
+        "pricePool": 400000000
+    },
+    {
+        "level": 93,
+        "name": "Caribbean Resort",
+        "priceTree": 210000000,
+        "pricePet": 315000000,
+        "priceHouse": 630000000,
+        "priceCar": 525000000,
+        "pricePool": 420000000
+    },
+    {
+        "level": 94,
+        "name": "Super Heroes",
+        "priceTree": 220000000,
+        "pricePet": 330000000,
+        "priceHouse": 660000000,
+        "priceCar": 550000000,
+        "pricePool": 440000000
+    },
+    {
+        "level": 95,
+        "name": "Egyptian Pyramids",
+        "priceTree": 220000000,
+        "pricePet": 330000000,
+        "priceHouse": 660000000,
+        "priceCar": 550000000,
+        "pricePool": 440000000
+    },
+    {
+        "level": 96,
+        "name": "Olympic Games",
+        "priceTree": 230000000,
+        "pricePet": 345000000,
+        "priceHouse": 690000000,
+        "priceCar": 575000000,
+        "pricePool": 460000000
+    },
+    {
+        "level": 97,
+        "name": "Mountain Climbers",
+        "priceTree": 240000000,
+        "pricePet": 360000000,
+        "priceHouse": 720000000,
+        "priceCar": 600000000,
+        "pricePool": 480000000
+    },
+    {
+        "level": 98,
+        "name": "Milky Way",
+        "priceTree": 260000000,
+        "pricePet": 390000000,
+        "priceHouse": 780000000,
+        "priceCar": 650000000,
+        "pricePool": 520000000
+    },
+    {
+        "level": 99,
+        "name": "Underworld",
+        "priceTree": 280000000,
+        "pricePet": 420000000,
+        "priceHouse": 840000000,
+        "priceCar": 700000000,
+        "pricePool": 560000000
+    },
+    {
+        "level": 100,
+        "name": "Magic Kingdom",
+        "priceTree": 300000000,
+        "pricePet": 450000000,
+        "priceHouse": 900000000,
+        "priceCar": 750000000,
+        "pricePool": 600000000
+    }
+]

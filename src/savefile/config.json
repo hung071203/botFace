@@ -1,0 +1,128 @@
+[
+  {
+    "threadID": "24235762749401844",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1714370005027,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7612542642112991",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1723261361771,
+    "prefix": "!"
+  },
+  {
+    "threadID": "6849016401860798",
+    "checkid": 1,
+    "remess": 1,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1723037071121,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7192101607500816",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1801581337843,
+    "prefix": "!"
+  },
+  {
+    "threadID": "6732345626838256",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1714492272689,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7573907599309673",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1723259893066,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7465782710183824",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": true,
+    "antiJoin": false,
+    "time": 1723350905261,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7120492684638139",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1715141698182,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7312038128911928",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1724070591385,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7110950285621421",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1715357470742,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7427884340599804",
+    "checkid": 0,
+    "remess": 1,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1724303927494,
+    "prefix": "!"
+  },
+  {
+    "threadID": "6939129222855933",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1715669506355,
+    "prefix": "!"
+  },
+  {
+    "threadID": "25799153773001515",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1715684694089,
+    "prefix": "!"
+  },
+  {
+    "threadID": "7914937368545941",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1715746072793,
+    "prefix": "!"
+  }
+]

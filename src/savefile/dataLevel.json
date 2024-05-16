@@ -1,0 +1,355 @@
+{
+  "level":[
+    {
+      "name": "Nhân loại",
+      "xp": 100
+    },
+    {
+      "name": "Luyện Khí Sơ Kỳ",
+      "xp": 1000
+    },
+    {
+      "name": "Luyện Khí Trung Kỳ",
+      "xp": 3000
+    },
+    {
+      "name": "Luyện Khí Hậu Kỳ",
+      "xp": 6000
+    },
+    {
+      "name": "Luyện Khí Đỉnh Phong",
+      "xp": 10000
+    },
+    {
+      "name": "Trúc Cơ Sơ Kỳ",
+      "xp": 15000
+    },
+    {
+      "name": "Trúc Cơ Trung Kỳ",
+      "xp": 25000
+    },
+    {
+      "name": "Trúc Cơ Hậu Kỳ",
+      "xp": 40000
+    },
+    {
+      "name": "Trúc Cơ Đỉnh Phong",
+      "xp": 60000
+    },
+    {
+      "name": "Kim Đan Sơ Kỳ",
+      "xp": 80000
+    },
+    {
+      "name": "Kim Đan Trung Kỳ",
+      "xp": 120000
+    },
+    {
+      "name": "Kim Đan Hậu Kỳ",
+      "xp": 180000
+    },
+    {
+      "name": "Kim Đan Đỉnh Phong",
+      "xp": 250000
+    },
+    {
+      "name": "Nguyên Anh Sơ Kỳ",
+      "xp": 350000
+    },
+    {
+      "name": "Nguyên Anh Trung Kỳ",
+      "xp": 500000
+    },
+    {
+      "name": "Nguyên Anh Hậu Kỳ",
+      "xp": 700000
+    },
+    {
+      "name": "Nguyên Anh Đỉnh Phong",
+      "xp": 1000000
+    },
+    {
+      "name": "Hóa Thần Sơ Kỳ",
+      "xp": 1500000
+    },
+    {
+      "name": "Hóa Thần Trung Kỳ",
+      "xp": 2000000
+    },
+    {
+      "name": "Hóa Thần Hậu Kỳ",
+      "xp": 3000000
+    },
+    {
+      "name": "Hóa Thần Đỉnh Phong",
+      "xp": 5000000
+    },
+    {
+      "name": "Đại Thừa Sơ Kỳ",
+      "xp": 8000000
+    },
+    {
+      "name": "Đại Thừa Trung Kỳ",
+      "xp": 10000000
+    },
+    {
+      "name": "Đại Thừa Hậu Kỳ",
+      "xp": 15000000
+    },
+    {
+      "name": "Đại Thừa Đỉnh Phong",
+      "xp": 25000000
+    },
+    {
+      "name": "Độ Kiếp",
+      "xp": 50000000
+    },
+    {
+      "name": "Kim Tiên",
+      "xp": 50000000000
+    }
+  ],
+  "tu":[
+    {
+      "id": 1,
+      "name": "Cửu Thiên Huyền Quyết",
+      "des": "Công pháp thượng cổ, rèn luyện thân thể cường tráng, hấp thu linh khí trời đất, ngự kiếm phi hành.",
+      "price": 1000000 ,
+      "power": 1,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 2,
+      "name": "Thái Cực Quyền",
+      "des": "Công pháp nội gia, rèn luyện khí huyết, tăng cường sức khỏe, lĩnh ngộ âm dương.",
+      "price": 10000 ,
+      "power": 0.5,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 3,
+      "name": "Vạn Kiếm Quyết",
+      "des": "Công pháp kiếm thuật, rèn luyện kiếm khí, triệu tập vạn kiếm, uy lực vô song.",
+      "price": 5000000 ,
+      "power": 5,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 4,
+      "name": "Tàng Thư Quyết",
+      "des": "Công pháp tu luyện tinh thần, tăng cường trí nhớ, lĩnh ngộ thiên địa, thông hiểu vạn vật.",
+      "price": 2000000 ,
+      "power": 2,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 5,
+      "name": "Đại Diễn Du Thân Thuật",
+      "des": "Công pháp thuật ẩn, di chuyển nhanh nhẹn, phi thân như gió, thoát khỏi nguy hiểm.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 6,
+      "name": "Lăng Vân Tích",
+      "des": "Công pháp tu luyện thân pháp, di chuyển như gió, lướt qua mây, phiêu bồng hư ảo.",
+      "price": 6500000 ,
+      "power": 6.5,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 7,
+      "name": "Thuật Ngự Hỏa",
+      "des": "Công pháp thuật pháp, điều khiển hỏa diễm, thiêu rụi kẻ thù, tạo ra hỏa diễm.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 8,
+      "name": "Băng Tuyết Tâm Pháp",
+      "des": "Công pháp thuộc tính hàn, rèn luyện nội lực băng giá, điều khiển băng tuyết, tạo ra hàn khí.",
+      "price": 4000000 ,
+      "power": 4,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 9,
+      "name": "Thần Phong Quyết",
+      "des": "Công pháp thuộc tính phong, rèn luyện nội lực gió, điều khiển gió, tạo ra lốc xoáy.",
+      "price": 4000000 ,
+      "power": 4,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 10,
+      "name": "Thiên Lôi Chưởng",
+      "des": "Công pháp thuộc tính lôi, rèn luyện nội lực lôi, điều khiển sấm sét, tạo ra uy lực kinh hoàng.",
+      "price": 10000000 ,
+      "power": 10,
+      "tu": "Tu tiên"
+    },
+    {
+      "id": 101,
+      "name": "Huyết Ma Công",
+      "des": "Công pháp ma đạo, hấp thu tinh huyết người khác để tăng cường sức mạnh, ma hóa bản thân.",
+      "price": 10000000 ,
+      "power": 10,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 102,
+      "name": "Cửu U Âm Hỏa",
+      "des": "Công pháp ma đạo, điều khiển hỏa diễm âm u, uy lực hắc ám, thiêu rụi mọi thứ.",
+      "price": 4000000 ,
+      "power": 4,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 103,
+      "name": "Thiên Ma Đại Pháp",
+      "des": "Công pháp ma đạo, triệu tập ma quỷ, uy lực kinh hoàng, khuấy đảo thiên địa.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 104,
+      "name": "Thôn Hồn Quyết",
+      "des": "Công pháp ma đạo, hấp thu hồn phách người khác để tăng cường sức mạnh, trường sinh bất lão.",
+      "price": 6500000 ,
+      "power": 6.5,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 105,
+      "name": "Cấm Kỵ Thuật",
+      "des": "Công pháp ma đạo, sử dụng các cấm thuật nguy hiểm, uy lực vô song, nhưng có thể phản噬自身.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 106,
+      "name": "Ảo Ảnh Ma Quyền",
+      "des": "Công pháp ma đạo, tạo ra ảo ảnh迷惑对手，攻击无形，防不胜防.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 107,
+      "name": "Độc Dạ Xoa",
+      "des": "Công pháp ma đạo, sử dụng độc khí, ám sát, hạ độc kẻ thù,无声无息.",
+      "price": 6500000 ,
+      "power": 6.5,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 108,
+      "name": "Cổ Ma Thuật",
+      "des": "Công pháp ma đạo, sử dụng cổ thuật nguyền rủa, khống chế, thao túng kẻ thù.",
+      "price": 2000000 ,
+      "power": 2,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 109,
+      "name": "Huyết Ảnh Ma Đao",
+      "des": "Công pháp ma đạo, sử dụng đao pháp ma quái, uy lực tàn bạo, chém giết kẻ thù.",
+      "price": 5000000 ,
+      "power": 5,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 110,
+      "name": "Tà Thiên Ma Nhạc",
+      "des": "Công pháp ma đạo, sử dụng âm nhạc tà ác, khuấy động tâm trí, khiến kẻ thù điên loạn.",
+      "price": 10000 ,
+      "power": 0.5,
+      "tu": "Tu ma"
+    },
+    {
+      "id": 201,
+      "name": "Hồ Yêu Tỏa Hương",
+      "des": "Công pháp yêu tộc, sử dụng hương thơm mê hoặc đối thủ, khiến họ say mê, mất đi ý thức.",
+      "price": 5000000 ,
+      "power": 5,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 202,
+      "name": "Cửu Vĩ Thiên Hồ",
+      "des": "Công pháp yêu tộc, biến hóa thành cửu vĩ hồ, uy lực mạnh mẽ,迷惑众生.",
+      "price": 10000000 ,
+      "power": 10,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 203,
+      "name": "Thú Vương Quyền",
+      "des": "Công pháp yêu tộc, tăng cường sức mạnh, tốc độ, bản năng hoang dã, chiến đấu mạnh mẽ.",
+      "price": 4000000 ,
+      "power": 4,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 204,
+      "name": "Ngự Linh Thuật",
+      "des": "Công pháp yêu tộc, điều khiển linh thú, chiến đấu cùng nhau, tăng cường sức mạnh.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 205,
+      "name": "Bách Thú Phệ Hồn",
+      "des": "Công pháp yêu tộc, hấp thu linh hồn của các loài thú, tăng cường sức mạnh, tu luyện nhanh chóng.",
+      "price": 6500000 ,
+      "power": 6.5,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 206,
+      "name": "Yêu Ảnh Thuật",
+      "des": "Công pháp yêu tộc, tạo ra ảo ảnh迷惑对手，攻击无形，防不胜防.",
+      "price": 6000000 ,
+      "power": 6,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 207,
+      "name": "Cổ Độc Thuật",
+      "des": "Công pháp yêu tộc, sử dụng độc dược, ám sát, hạ độc kẻ thù,无声无息.",
+      "price": 2000000 ,
+      "power": 2,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 208,
+      "name": "Huyết Yêu Kiếm Pháp",
+      "des": "Công pháp yêu tộc, sử dụng kiếm pháp ma quái, uy lực tàn bạo, chém giết kẻ thù.",
+      "price": 5000000 ,
+      "power": 5,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 209,
+      "name": "Thiên Ma Âm",
+      "des": "Công pháp yêu tộc, sử dụng âm thanh ma mị, khuấy động tâm trí, khiến kẻ thù điên loạn.",
+      "price": 5000000 ,
+      "power": 3,
+      "tu": "Tu yêu"
+    },
+    {
+      "id": 210,
+      "name": "Yêu Hồn Luyện Phách",
+      "des": "Công pháp yêu tộc, luyện hóa hồn phách, tăng cường sức mạnh, tu luyện bí thuật.",
+      "price": 10000 ,
+      "power": 0.5,
+      "tu": "Tu yêu"
+    }
+  ]
+  
+}
