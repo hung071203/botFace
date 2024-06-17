@@ -1,11 +1,11 @@
 
 module.exports.config = {
-    name: 'creShort',
+    name: 'creshort',
     version: '1.0.0',
     credit: 'YourName',
     description: ' Tạo shortcut',
     tag: 'shortcut',
-    usage: '!creShort [tên short]'
+    usage: '!creshort [tên short]'
 };
  
 module.exports.run = async function (api, event, args, client) {

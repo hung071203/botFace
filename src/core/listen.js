@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
+const levenshtein = require('fast-levenshtein');
+
 let thathinh = []
 const filePath = path.join(__dirname, '..', '..', 'src', 'savefile', 'thathinh.json');
 try {
@@ -13,6 +15,7 @@ try {
 let events =[]
 let run = true
 const timeRun = Date.now()
+global.timeRun = timeRun
 
 module.exports = (api, client) => {
 
@@ -29,11 +32,18 @@ module.exports = (api, client) => {
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.79 Safari/537.36"
     });
     api.listenMqtt((err, event) => {
+        global.events = event
+        global.api = api
+        
         if(!event) return
         if(event.type == 'presence') return
 
         client.events.forEach((value, key) => {
             client.events.get(key).run(api, event, client)
+        });
+        client.commands.forEach((value, key) => {
+            if (!client.commands.get(key).handleEvent) return;
+            client.commands.get(key).handleEvent(api, event, client);
         });
         
         
@@ -72,45 +82,13 @@ module.exports = (api, client) => {
                 listNoprefix.push(key);
             });
 
-            if (listNoprefix.includes (args[0])) {
-                client.noprefix.get(args[0]).noprefix(api, event, args, client);
+            if (listNoprefix.includes (args[0].toLowerCase())) {
+                client.noprefix.get(args[0].toLowerCase()).noprefix(api, event, args, client);
             }
             
             let check = client.QTVOL.find(item => item.threadID == event.threadID)
             if(!check) return
-            if(event.body == check.prefix) {
-                const timeNow = Date.now(); // Thời điểm hiện tại
-                const timeElapsed = timeNow - timeRun; // Thời gian đã trôi qua tính bằng mili giây
-        
-                // Chuyển đổi thời gian từ mili giây sang giờ, phút và giây
-                const seconds = Math.floor((timeElapsed / 1000) % 60);
-                const minutes = Math.floor((timeElapsed / (1000 * 60)) % 60);
-                const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24);
-                let msgs = `⛔Bạn chưa nhập tên lệnh\n`
-                msgs += `⏱Tổng thời gian hoạt động: ${hours}:${minutes}:${seconds}\n`
-                
-                
-
-                const pingURL = async (url) => {
-                    try {
-                    
-                        const startTime = Date.now();
-                        await axios.get(url);
-                        const endTime = Date.now();
-                        const pingTime = endTime - startTime;
-                        msgs += `🪫Ping: ${pingTime}ms`
-                    } catch (error) {
-                        console.error(`Ping to ${url} failed: ${error.message}`);
-                        msgs += `🪫Ping: false`
-                    }
-                    msgs += `\n\n${thathinh[Math.floor(Math.random() * thathinh.length)]}\n\n`
-                    return api.sendMessage(msgs, event.threadID, event.messageID)
-                };
-                
-                return pingURL('https://www.google.com');
-                
-                
-            }
+            
             if(!args[0].startsWith(check.prefix)) return;
             console.log('gdygfhjdis');
             events.push(event)
@@ -118,7 +96,7 @@ module.exports = (api, client) => {
                 run = false
                 setInterval(() => {
                     processData(api, args, events, client); 
-                }, 1500);
+                }, 1000);
             }
             
 
@@ -160,19 +138,72 @@ async function processData(api, args, events, client) {
             }
         }
     }
+    
+    
 
     //code
     listCommands = [];
 
     let checkpf = client.QTVOL.find(item => item.threadID == event.threadID)
-    if(!checkpf) return
+    if(event.body == checkpf.prefix) {
+        const timeNow = Date.now(); // Thời điểm hiện tại
+        const timeElapsed = timeNow - timeRun; // Thời gian đã trôi qua tính bằng mili giây
+
+        // Chuyển đổi thời gian từ mili giây sang giờ, phút và giây
+        const seconds = Math.floor((timeElapsed / 1000) % 60);
+        const minutes = Math.floor((timeElapsed / (1000 * 60)) % 60);
+        const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24);
+        let msgs = `⛔Bạn chưa nhập tên lệnh\n`
+        msgs += `⏱Tổng thời gian hoạt động: ${hours}:${minutes}:${seconds}\n`
+        
+        
+
+        const pingURL = async (url) => {
+            try {
+            
+                const startTime = Date.now();
+                await axios.get(url);
+                const endTime = Date.now();
+                const pingTime = endTime - startTime;
+                msgs += `🪫Ping: ${pingTime}ms`
+            } catch (error) {
+                console.error(`Ping to ${url} failed: ${error.message}`);
+                msgs += `🪫Ping: false`
+            }
+            
+            msgs += `\n\n${thathinh[Math.floor(Math.random() * thathinh.length)]}\n\n`
+            return api.sendMessage(msgs, event.threadID, event.messageID)
+        };
+        
+        return pingURL('https://www.google.com');
+        
+        
+    }
 
     args = event.body.slice (checkpf.prefix.length).trim().split(' ');
     client.commands.forEach((value, key) => {
         listCommands.push(key);
     });
     
-    if (!listCommands.includes(args[0])) return api.sendMessage('Lệnh của bạn không tồn tại!!', event.threadID, event.messageID);
-    client.commands.get (args[0]).run(api, event, args, client);
+    let command = args[0].toLowerCase();
+    if (!listCommands.includes(command)) {
+        let find = findClosestCommand(command, listCommands);
+        return api.sendMessage (`⛔Lệnh bạn nhập không tồn tại!\n♟️Lệnh gần giống nhất là: ${find}`, event.threadID, event.messageID);
+    }
+    client.commands.get (command).run(api, event, args, client);
 }
 
+function findClosestCommand(input, commands) {
+    let closestCommand = null;
+    let closestDistance = Infinity;
+
+    commands.forEach(command => {
+        const distance = levenshtein.get(input, command);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestCommand = command;
+        }
+    });
+
+    return closestCommand;
+}

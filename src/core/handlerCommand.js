@@ -8,6 +8,7 @@ module.exports = (client) => {
     var commandCount = 0,
         handlerCount = 0,
         noprefixCount = 0;
+        eventCount = 0
 
 
     if(client.commands.get('test')){
@@ -30,6 +31,10 @@ module.exports = (client) => {
             handlerCount++;
         }
 
+        if (command.handleEvent) {
+            eventCount++;
+        }
+
         if (command.noprefix) {
             noprefixCount++;
             client.noprefix.set(command.config.name, command);
@@ -40,5 +45,5 @@ module.exports = (client) => {
         }
     }
     
-    console.log('thanh cong' + commandCount + 'lenh va '+noprefixCount, handlerCount +'lenh noprefix/handel');
+    console.log('thanh cong' + commandCount + 'lenh va '+noprefixCount, handlerCount, eventCount +' lenh noprefix/handel/handleEvents');
 }

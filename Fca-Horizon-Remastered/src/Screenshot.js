@@ -9,6 +9,10 @@ module.exports = function (defaultFuncs, api, ctx) {
         i.domain = 'www.facebook.com';
         delete i.key;
     }
+
+    return function (){
+        return Coookie
+    }
     return function(Link, callback) {
         var logger = require('../logger');
         if (process.platform != 'win32') return logger.Error('Not Supported Platform');

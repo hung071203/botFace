@@ -12,11 +12,13 @@ module.exports.config = {
     if (Object.keys(event.mentions).length === 0) {
       // Extract arguments
       const name = args.slice(1).join(' ');
-    
+      
       // Change the user nickname
       api.changeNickname(name,event.threadID, event.senderID, (err) => {
-        if (err) return console.error(err);
-        api.sendMessage('đổi tên không thành công, có thể do nhóm đã hạn chế đổi biệt danh người khác!', event.threadID, event.messageID);
+        if (err) {
+          console.error(err);
+          api.sendMessage('đổi tên không thành công, có thể do nhóm đã hạn chế đổi biệt danh người khác!', event.threadID, event.messageID);
+        } 
       });
     }else if (Object.keys(event.mentions).length === 1) {
       
@@ -24,11 +26,13 @@ module.exports.config = {
       const n = event.mentions[userID];
       const countU = n.split(' ').length;
       const name = args.slice(countU + 1).join(' ');
-    
+      
       // Change the user nickname
       api.changeNickname(name,event.threadID, userID, (err) => {
-        if (err) return console.error(err);
-        api.sendMessage('đổi tên không thành công, có thể do nhóm đã hạn chế đổi biệt danh người khác!', event.threadID, event.messageID);
+        if (err) {
+          console.error(err);
+          api.sendMessage('đổi tên không thành công, có thể do nhóm đã hạn chế đổi biệt danh người khác!', event.threadID, event.messageID);
+        } 
       });
     }else{
       api.sendMessage('Cú pháp không hợp lệ, sử dụng !sname [Người dùng(nếu cần)] [biệt danh] ',event.threadID, event.messageID);

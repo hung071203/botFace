@@ -65,24 +65,14 @@ module.exports.run = async function(api, event, args, client) {
   if (!findHis) {
       chatHis.push({
           ID: event.senderID,
-          his: [
-            {
-              role: "user",
-              parts: [{ text: "Hello" }],
-            },
-            {
-              role: "model",
-              parts: [{ text: "Great to meet you. " }],
-            },
-          ]
+          his: []
       });
       findHis = chatHis.find(item => item.ID === event.senderID);
   }
 
   const text = await runN(query, findHis.his);
-  findHis.his.push({ role: "user", parts: [{ text: query }] });
-  findHis.his.push({ role: "model", parts: [{ text: text }] });
-  console.log(chatHis);
+  
+  console.log(findHis.his);
   
   api.sendMessage(text, event.threadID, event.messageID);
 };
@@ -119,16 +109,7 @@ async function runN(prompts, his) {
       return response.text();
   } catch (error) {
       console.error("Lỗi khi chạy hàm runN:", error);
-      his = [
-        {
-          role: "user",
-          parts: [{ text: "Hello" }],
-        },
-        {
-          role: "model",
-          parts: [{ text: "Great to meet you. " }],
-        },
-      ]
+      his = []
       return error.message;
   }
 }

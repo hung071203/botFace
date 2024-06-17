@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require("fs")
+const toughCookie = require('tough-cookie');
 module.exports.config = {
     name: "cap",
     version: "1.0.0",
@@ -14,7 +15,7 @@ module.exports.run = async function (api, event, args, client) {
     if (event.type == 'message_reply') {
         uid = event.messageReply.senderID
     }
-    let url = `https://www.facebook.com/${uid}`
+    let url = `https://facebook.com/${uid}`
     if(args.length == 2) {
         let a = args[1]
         if(a.includes('https://')||a.includes('http://')){
@@ -32,36 +33,29 @@ module.exports.run = async function (api, event, args, client) {
 
     // Mở một trang mới
     const page = await browser.newPage();
-    await page.setViewport({ width: 1920, height: 1080 });
     // Điều hướng đến URL của trang web cần chụp
-    const bfTime = Date.now()
-    await page.goto(url);
-    const atTime = Date.now()
-    deltaTime = atTime - bfTime
+    let cookies = await api.Screenshot()
+    if (cookies) {
+        cookies = cookies.map(cookie => {
+            if (cookie.expires) {
+                cookie.expires = new Date(cookie.expires).getTime() / 1000;
+            }
+            return cookie;
+        });
+        for (const cookie of cookies) {
+            await page.setCookie(cookie);
+        }
+    }      
+    await page.setViewport({ width: 1920, height: 1080 });    
     if(args.length != 2){
         try {
             
-            const divselector = '.x92rtbv.x10l6tqk.x1tk7jg1.x1vjfegm';
+            const bfTime = Date.now()
+            await page.goto(url, { timeout: 5000 });
+            const atTime = Date.now()
             
-            await page.waitForSelector(divselector, { timeout: 5000 });
-            // Nhấn vào thẻ div
-            await page.click(divselector);
-            // Chụp màn hình và lưu vào file ảnh
-
-            const divClasses = 'x78zum5 xdt5ytf x2lah0s x193iq5w x2bj2ny x1ey2m1c xayqjjm x9f619 xds687c x1xy6bms xn6708d x1s14bel x1ye3gou xixxii4 x17qophe x1u8a7rm';
-
-            // Tạo selector cho thẻ div
-            const divSelector = `div.${divClasses.replace(/ /g, '.')}`;
-            // Chờ thẻ div hiển thị
-            await page.waitForSelector(divSelector);
-
-            // Xóa thẻ div từ DOM
-            await page.evaluate((selector) => {
-                const divToRemove = document.querySelector(selector);
-                if (divToRemove) {
-                divToRemove.remove();
-                }
-            }, divSelector);
+            deltaTime = atTime - bfTime
+            
             await page.screenshot({ path: filePath });
             msgs = {
                 body: `📱Chụp trang cá nhân thành công\n⌚Truy vấn thực hiện trong ${deltaTime} ms`,
@@ -78,6 +72,10 @@ module.exports.run = async function (api, event, args, client) {
         }
     }else{
         try {
+            const bfTime = Date.now()
+            await page.goto(url);
+            const atTime = Date.now()
+            deltaTime = atTime - bfTime
            await page.screenshot({ path: filePath });
             msgs = {
                 body: `📱Chụp trang web thành công\n⌚Truy vấn thực hiện trong ${deltaTime} ms`,
@@ -101,4 +99,5 @@ module.exports.run = async function (api, event, args, client) {
         });
     }, event.messageID)
 }
+
 

@@ -1,10 +1,10 @@
-const puppeteer = require('puppeteer');
+
 const translate = require('translate-google');
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
 module.exports.config = {
-    name: "t2i2",
+    name: "t2i",
     version: "2.0.0",
     credits: "Ralph",
     description: "Text 2 img 2.0",
@@ -17,52 +17,44 @@ module.exports.run = async function (api, event, args, client) {
     if (args.length == 1) return api.sendMessage('Cú pháp không hợp lệ', event.threadID, event.messageID);
     let query1 = args.slice(1).join(" ");
     let query = await translateText(query1)
-    // Khởi động trình duyệt Puppeteer
-    const browser = await puppeteer.launch();
-    
-    // Mở một trang mới
-    const page = await browser.newPage();
-    
-    // Truy cập trang web
-    await page.goto('https://aicreate.com/text-to-image-generator/');
+    let imgSrc = ''
+    const data = {
+        action: encodeURIComponent('text_to_image_handle'),
+        caption: encodeURIComponent(query),
+        negative_prompt: encodeURIComponent('ugly, deformed, disfigured, nswf,low res,blurred'),
+        model_version: encodeURIComponent('PHOTOREALISTIC13'),
+        size: encodeURIComponent('512x512')
+    };
+    const config = {
+        headers: {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Accept-Language': 'vi,en;q=0.9,en-GB;q=0.8,en-US;q=0.7',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'Cookie': '_ga=GA1.1.1226295101.1716624915; _ga_P2N8SMS4ZT=GS1.1.1716624914.1.1.1716626078.0.0.0; _ga_LYMBWKV50Z=GS1.1.1716624914.1.1.1716626078.0.0.0',
+            'Origin': 'https://aicreate.com',
+            'Referer': 'https://aicreate.com/text-to-image-generator/',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    };
+    const response = await axios.post('https://aicreate.com/wp-admin/admin-ajax.php', data, config);
+    const html = response.data.html;
+    console.log(response.data);
+    const imageUrlRegex = /<img.*?src=["']([^"']+)["']/g;
+    const imageUrls = [];
+    let match;
 
-    // Chờ cho trang web tải hoàn tất
-
-    try {
-        await page.waitForSelector('input[name="caption"]', { timeout: 2000 }); // Đợi tối đa 2 giây cho selector xuất hiện
-        
-    } catch (error) {
-    
-    return api.sendMessage('Mạng đang bị lỏ, thử lại sau!', event.threadID, event.messageID)// In ra console nếu không tìm thấy selector sau 2 giây
+    while ((match = imageUrlRegex.exec(html)) !== null) {
+        imageUrls.push(match[1]);
     }
 
-    // Tìm ô input có trường name="caption"
-    const inputElement = await page.$('input[name="caption"]');
-    await page.$eval('input[name="caption"]', input => input.value = '');
-    
-    // Thực hiện thao tác với ô input nếu cần
-    // Ví dụ: điền giá trị vào ô input
-    await inputElement.type(query);
-    const value = await page.evaluate(element => element.value, inputElement);
-    console.log('Giá trị của ô input:', value);
-    await page.click('button[type="submit"]');
-
-    await page.waitForFunction(() => {
-        const img = document.querySelector('img[style="object-fit: cover; width: 100%; height: 100%;"]');
-        return img && img.complete;
-    });
-
-    // Lấy scr của thẻ img
-    const imgSrc = await page.evaluate(() => {
-        const img = document.querySelector('img[style="object-fit: cover; width: 100%; height: 100%;"]');
-        return img.src;
-    });
-    
-    // In ra scr của thẻ img
-    console.log('Src của thẻ img:', imgSrc);
-    // Đóng trình duyệt
-    await browser.close();
-
+    if (imageUrls.length > 0) {
+        console.log("Đường dẫn của ảnh đầu tiên:", imageUrls[0]);
+        imgSrc = imageUrls[0];
+    } else {
+        console.log("Không tìm thấy ảnh.");
+    }
     const filename = `${Date.now()}.png`;
     const filePath = path.join(__dirname, '..','..','img',filename);
 

@@ -5,12 +5,12 @@ const axios = require('axios');
 
 const genAI = new GoogleGenerativeAI(process.env.APIG);
 module.exports.config = {
-  name: "aiA",
+  name: "aia",
   version: "1.0.0",
   credits: "Ralph",
   description: "Trả lời câu hỏi bằng AI 2.0",
   tag: 'AI',
-  usage: "!aiA",
+  usage: "!aia",
 };
 
 let chatHis = []
@@ -20,16 +20,7 @@ module.exports.run = async function (api, event, args, client) {
   if (!findHis) {
     chatHis.push({
       ID:event.senderID,
-      his: [
-        {
-          role: "user",
-          parts: [{ text: "Hello" }],
-        },
-        {
-          role: "model",
-          parts: [{ text: "Great to meet you. " }],
-        },
-      ]
+      his: []
     })
     findHis = chatHis.find(item => item.ID == event.senderID)
     api.sendMessage('tự động chat với bot đã được kích hoạt!', event.threadID, (error, info) => {
@@ -111,8 +102,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
   
   
   const text = await runN(query, findHis.his);
-  findHis.his.push({ role: "user", parts: [{ text: query }] });
-  findHis.his.push({ role: "model", parts: [{ text: text }] });
+  
   api.sendMessage(text, event.threadID, event.messageID);
 
 }

@@ -17,7 +17,13 @@ module.exports.run = function (api, event, client) {
         let find = client.QTVOL.find(item => item.threadID == event.threadID)
         if(!find) return api.sendMessage('lỗi!', event.threadID)
         if(find.antiOut == false){
-            msgbody = `Thuyền viên ${userInfo[event.logMessageData.leftParticipantFbId].name} vì bị trap nên đã quyết định rời nhóm!`;
+            let msgbody = ''
+            if(event.logMessageData.leftParticipantFbId != event.author){
+                msgbody = `Thuyền viên ${userInfo[event.logMessageData.leftParticipantFbId].name} đã bị quản trị viên sút khỏi nhóm vì ngứa mồm!`;
+            }else{
+                msgbody = `Thuyền viên ${userInfo[event.logMessageData.leftParticipantFbId].name} vì bị trap nên đã quyết định rời nhóm!`;
+            }
+            
             
             api.shareContact(msgbody, event.logMessageData.leftParticipantFbId, event.threadID, (err, data) => {
                 if(err) {

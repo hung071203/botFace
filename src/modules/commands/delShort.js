@@ -1,12 +1,12 @@
 
 
 module.exports.config = {
-    name: 'delShort',
+    name: 'delshort',
     version: '1.0.0',
     credit: 'YourName',
     description: ' xoa shortcut',
     tag: 'shortcut',
-    usage: '!delShort [tên shortcut]'
+    usage: '!delshort [tên shortcut]'
 };
  
 module.exports.run = async function (api, event, args, client) {

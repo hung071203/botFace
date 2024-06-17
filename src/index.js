@@ -7,8 +7,7 @@ const login = require("../Fca-Horizon-Remastered");
 
 
 loginPath = {appState: JSON.parse(readFileSync(__dirname + "/appstate.json", "utf-8"))};
-loginAcc = {email: "039271203341", password: "01677796540761"}
-
+global.stop = false;
 var client = {
     config: process.env,
     ADMIN: process.env.ADMIN.trim().split(' ').filter(item => item !== ""),
@@ -47,8 +46,17 @@ handlers.forEach(handler => {
 });
 
 
-login(loginPath, (err, api) => {
-    if(err) return console.error(err);
+login(loginPath, (error, api) => {
+    
+    if(error) {
+        if (error.code === 'ECONNRESET') {
+            console.error('Lỗi kết nối bị reset:', error);
+            process.exit(1);
+        } else {
+            console.error(error);
+        }
+        
+    }
     
     require(`${__dirname}/core/listen`) (api, client);
 

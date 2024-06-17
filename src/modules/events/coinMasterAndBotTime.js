@@ -45,7 +45,7 @@ module.exports.run = function (api, event, client) {
             remess: 0,
             antiOut: false,
             antiJoin: false,
-            time: parseInt(event.timestamp) + 24 * 60 * 60 * 1000,
+            time: parseInt(event.timestamp),
             prefix: process.env.PREFIX
         })
     }

@@ -22,15 +22,13 @@ module.exports.run = async function (api, event, args, client) {
             msgs += `🆔Biệt danh: ${info[event.senderID].vanity}\n`
             msgs += `🕵️Giới tính: ${info[event.senderID].gender}\n---------------------------------------------------------\n`
             msgs += '🎄Kiểm tra tương tác của nguời dùng:\n---------------------------------------------------------\n'
-            let find = client.message.filter(item => item.senderID == event.senderID && item.threadID == event.threadID)
+            let find = client.message.find(item => item.senderID == event.senderID && item.threadID == event.threadID)
             if(!find){
                 msgs +='Tương tác đi rồi kiểm tra lại!'
             }else{
-                msgs +=`🎈Tổng số tin nhắn: ${find.length}\n`
-                const currentDate = new Date();
-                currentDate.setHours(0, 0, 0, 0)
-                let day = find.filter(item => item.timestamp >= currentDate.getTime())
-                msgs +=`🚲Số tin nhắn trong ngày: ${day.length}\n`
+                msgs +=`🎈Tổng số tin nhắn: ${find.all}\n`
+                msgs +=`🚲Số tin nhắn trong tuần: ${find.week}\n`
+                msgs +=`🚲Số tin nhắn trong ngày: ${find.day}\n`
             }
             
             api.shareContact(msgs, event.senderID, event.threadID, (err, data) => {

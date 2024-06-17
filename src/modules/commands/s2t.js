@@ -12,7 +12,7 @@ module.exports.run = async function (api, event, args, client) {
     if(args.length < 3) return api.sendMessage('Cú pháp không hợp lệ!', event.threadID, event.messageID)
     let findUMN = client.money.find(item => item.ID == event.senderID && item.threadID == event.threadID)
     if(!findUMN) return api.sendMessage('Thử lại sau!', event.threadID, event.messageID)
-
+    thID = []    
     api.getThreadList(999, null, [], (err, arr) => {
         if (err) return api.sendMessage(`Lỗi: ${err.message}`, event.threadID, event.messageID)
         
@@ -71,28 +71,28 @@ module.exports.handleReply = async function (api, event, client, hdr) {
     let checkn = thID.find(item => item.threadID == event.threadID);
     if(!check || !checkn) return api.sendMessage('Nhóm không tồn tại hoặc bot không trong nhóm đó, dùng gthread để biết chi tiết!', event.threadID, event.messageID)
     let msg = `-----------------------------------------------------------------\n🎄Người dùng ${checkMN.name} từ nhóm ${checkn.name} phản hồi tin nhắn:\n-----------------------------------------------------------------\n\n${event.body}\n\n-----------------------------------------------------------------\nReply tin nhắn này để phản hồi!`
-        let msgs ={
-            body: msg,
-            mentions:[{
-                tag: checkMN.name,
-                id: event.senderID
-            }]
+    let msgs ={
+        body: msg,
+        mentions:[{
+            tag: checkMN.name,
+            id: event.senderID
+        }]
+    }
+    api.sendMessage(msgs, hdr.threadID, (error, info) => {
+        if (error) {
+            console.log(error);
+            api.sendMessage('Gửi thất bại!', event.threadID, event.messageID)
+        } else {
+            api.sendMessage(`Gửi tin nhắn thành công tới nhóm ${check.name}!`, event.threadID, event.messageID)
+            client.handleReply.push({
+                name: this.config.name,
+                messageID: info.messageID,
+                author: event.senderID,
+                auMessageID: event.messageID,
+                threadID: event.threadID,
+                toThreadID: hdr.threadID
+            })
         }
-        api.sendMessage(msgs, hdr.threadID, (error, info) => {
-            if (error) {
-                console.log(error);
-                api.sendMessage('Gửi thất bại!', event.threadID, event.messageID)
-            } else {
-                api.sendMessage(`Gửi tin nhắn thành công tới nhóm ${check.name}!`, event.threadID, event.messageID)
-                client.handleReply.push({
-                    name: this.config.name,
-                    messageID: info.messageID,
-                    author: event.senderID,
-                    auMessageID: event.messageID,
-                    threadID: event.threadID,
-                    toThreadID: hdr.threadID
-                })
-            }
-        }, hdr.auMessageID) 
+    }, hdr.auMessageID) 
 
 }

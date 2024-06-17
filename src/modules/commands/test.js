@@ -10,6 +10,16 @@ module.exports.config = {
   
   
 module.exports.run = async function (api, event, args, client) {
-    console.log('dagdy1234rf');
-    api.getUserInfoV2('100087613896422')
+    
+    try {
+        api.handleMessageRequest(event.threadID, true,(err, data) =>{
+            if(err) return console.log(err)
+            console.log(data)
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+module.exports.handleEvent = async function (api, event, client) {
+    // console.log('handleEvent');
 }

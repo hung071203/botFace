@@ -10,6 +10,11 @@ module.exports.config = {
   
   
 module.exports.run = async function (api, event, args, client) {
+    let find = client.QTVOL.find(e => e.threadID == event.threadID)
+    if(!find) return api.sendMessage('Không có thông tin nhóm này, thử lại!', event.threadID, event.messageID)
+    var d = new Date(find.time);
+    var lDate = d.toLocaleString('vi-VN', {timeZone: 'Asia/Ho_Chi_Minh'});
+    
     api.getThreadInfo(event.threadID, (err, inf) =>{
         if (err) {
             console.log(err);
@@ -21,6 +26,7 @@ module.exports.run = async function (api, event, args, client) {
             msg+= `Emoji đang dùng: ${inf.emoji}\n`;
             msg+= `Thread color: ${inf.color}\n`;
             msg+= `số tin nhắn trong nhóm: ${inf.messageCount}\n`;
+            msg+= `Thời gian sử dụng bot của nhóm đến ${lDate}`
             api.sendMessage(msg, event.threadID, event.messageID);
 
         }
