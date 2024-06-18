@@ -14,7 +14,13 @@ module.exports.run = function (api, event, client) {
         check = false
         processData(api, client); 
     }
-    
+    client.handleReply.forEach(element => {
+        if(!element.timestamp) return
+        const currentDate = new Date()
+        if(element.timestamp < currentDate + 10000){
+            client.handleReply = client.handleReply.filter(item => item.messageID != element.messageID)
+        }
+    });
     if (event.logMessageType == 'log:subscribe' || event.logMessageType == 'log:unsubscribe') {
         processData(api, client); 
         if(event.logMessageData.leftParticipantFbId == api.getCurrentUserID()){
