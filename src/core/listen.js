@@ -152,9 +152,19 @@ async function processData(api, args, events, client) {
         // Chuyển đổi thời gian từ mili giây sang giờ, phút và giây
         const seconds = Math.floor((timeElapsed / 1000) % 60);
         const minutes = Math.floor((timeElapsed / (1000 * 60)) % 60);
-        const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24);
-        let msgs = `⛔Bạn chưa nhập tên lệnh\n`
-        msgs += `⏱Tổng thời gian hoạt động: ${hours}:${minutes}:${seconds}\n`
+        const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24); // Giới hạn lại giờ từ 0 đến 23
+
+        let msgs = `⛔Bạn chưa nhập tên lệnh\n`;
+        
+
+        // Nếu bạn muốn hiển thị ngày nếu thời gian vượt quá 1 ngày
+        const days = Math.floor(timeElapsed / (1000 * 60 * 60 * 24));
+        if (days > 0) {
+            msgs += `⏱Tổng thời gian hoạt động: ${days} ngày, ${hours}:${minutes}:${seconds}\n`;
+        }else{
+            msgs += `⏱Tổng thời gian hoạt động: ${hours}:${minutes}:${seconds}\n`;
+        }
+
         
         
 

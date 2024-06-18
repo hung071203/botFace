@@ -119,11 +119,11 @@
   {
     "threadID": "7312038128911928",
     "senderID": "100038791595043",
-    "all": 72,
-    "week": 2,
+    "all": 76,
+    "week": 3,
     "day": 1,
-    "lastUpdatedDay": 1716829200000,
-    "lastUpdatedWeek": 1717316795796
+    "lastUpdatedDay": 1717174800000,
+    "lastUpdatedWeek": 1718526395796
   },
   {
     "threadID": "7312038128911928",
@@ -155,10 +155,10 @@
   {
     "threadID": "7312038128911928",
     "senderID": "100068096370437",
-    "all": 862,
-    "week": 6,
-    "day": 4,
-    "lastUpdatedDay": 1718643600000,
+    "all": 863,
+    "week": 7,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718526913871
   },
   {
@@ -182,9 +182,9 @@
   {
     "threadID": "7465782710183824",
     "senderID": "100089953062327",
-    "all": 1811,
-    "week": 89,
-    "day": 64,
+    "all": 1833,
+    "week": 111,
+    "day": 86,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718527873933
   },
@@ -236,10 +236,10 @@
   {
     "threadID": "7465782710183824",
     "senderID": "100013973854945",
-    "all": 95,
-    "week": 7,
-    "day": 4,
-    "lastUpdatedDay": 1718643600000,
+    "all": 96,
+    "week": 8,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718529207420
   },
   {
@@ -992,10 +992,10 @@
   {
     "threadID": "7465782710183824",
     "senderID": "61557394056837",
-    "all": 373,
-    "week": 70,
-    "day": 47,
-    "lastUpdatedDay": 1718643600000,
+    "all": 539,
+    "week": 236,
+    "day": 3,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718544719856
   },
   {
@@ -1469,10 +1469,10 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100063756196793",
-    "all": 541,
-    "week": 19,
-    "day": 8,
-    "lastUpdatedDay": 1718643600000,
+    "all": 545,
+    "week": 23,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718555483701
   },
   {
@@ -2081,10 +2081,10 @@
   {
     "threadID": "7148784225226126",
     "senderID": "100039600608904",
-    "all": 87,
-    "week": 1,
+    "all": 88,
+    "week": 2,
     "day": 1,
-    "lastUpdatedDay": 1718211600000,
+    "lastUpdatedDay": 1718298000000,
     "lastUpdatedWeek": 1718526135742
   },
   {
@@ -2180,10 +2180,10 @@
   {
     "threadID": "7148784225226126",
     "senderID": "100078367361448",
-    "all": 22,
-    "week": 3,
+    "all": 23,
+    "week": 4,
     "day": 1,
-    "lastUpdatedDay": 1717520400000,
+    "lastUpdatedDay": 1717606800000,
     "lastUpdatedWeek": 1718539932811
   },
   {
@@ -2288,9 +2288,9 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100005976004976",
-    "all": 1102,
-    "week": 169,
-    "day": 161,
+    "all": 1106,
+    "week": 173,
+    "day": 165,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718535413136
   },
@@ -2360,11 +2360,11 @@
   {
     "threadID": "7465782710183824",
     "senderID": "100056751016984",
-    "all": 141,
-    "week": 124,
-    "day": 112,
-    "lastUpdatedDay": 1718298000000,
-    "lastUpdatedWeek": 1717907931241
+    "all": 237,
+    "week": 96,
+    "day": 93,
+    "lastUpdatedDay": 1718643600000,
+    "lastUpdatedWeek": 1718512731241
   },
   {
     "threadID": "7148784225226126",
@@ -2684,9 +2684,9 @@
   {
     "threadID": "7465782710183824",
     "senderID": "100090683697195",
-    "all": 277,
-    "week": 17,
-    "day": 14,
+    "all": 301,
+    "week": 41,
+    "day": 38,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718531137086
   },
@@ -3062,18 +3062,18 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100090683697195",
-    "all": 71,
-    "week": 1,
+    "all": 73,
+    "week": 3,
     "day": 1,
-    "lastUpdatedDay": 1718384400000,
+    "lastUpdatedDay": 1718557200000,
     "lastUpdatedWeek": 1718542470831
   },
   {
     "threadID": "7914937368545941",
     "senderID": "61556017113088",
-    "all": 834,
-    "week": 53,
-    "day": 38,
+    "all": 835,
+    "week": 54,
+    "day": 39,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718542932171
   },
@@ -3350,10 +3350,10 @@
   {
     "threadID": "7148784225226126",
     "senderID": "100070350516524",
-    "all": 37,
-    "week": 2,
+    "all": 38,
+    "week": 3,
     "day": 1,
-    "lastUpdatedDay": 1718384400000,
+    "lastUpdatedDay": 1718470800000,
     "lastUpdatedWeek": 1718536245544
   },
   {
@@ -3881,10 +3881,10 @@
   {
     "threadID": "7312038128911928",
     "senderID": "100089195796584",
-    "all": 114,
-    "week": 7,
-    "day": 4,
-    "lastUpdatedDay": 1718643600000,
+    "all": 117,
+    "week": 10,
+    "day": 2,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718476570289
   },
   {
@@ -3971,10 +3971,10 @@
   {
     "threadID": "7312038128911928",
     "senderID": "61560547082987",
-    "all": 50,
-    "week": 9,
-    "day": 6,
-    "lastUpdatedDay": 1718643600000,
+    "all": 54,
+    "week": 13,
+    "day": 2,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718553176227
   },
   {
@@ -4088,9 +4088,9 @@
   {
     "threadID": "7465782710183824",
     "senderID": "100035601520953",
-    "all": 92,
-    "week": 25,
-    "day": 22,
+    "all": 94,
+    "week": 27,
+    "day": 24,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718525090727
   },
@@ -4322,9 +4322,9 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100057662920841",
-    "all": 129,
-    "week": 16,
-    "day": 14,
+    "all": 130,
+    "week": 17,
+    "day": 15,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718538217714
   },
@@ -4439,9 +4439,9 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100038740121428",
-    "all": 219,
-    "week": 219,
-    "day": 112,
+    "all": 222,
+    "week": 222,
+    "day": 115,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718511440964
   },
@@ -4457,19 +4457,19 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100090683697195",
-    "all": 23,
-    "week": 23,
-    "day": 9,
-    "lastUpdatedDay": 1718643600000,
+    "all": 28,
+    "week": 28,
+    "day": 5,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718511441944
   },
   {
     "threadID": "7902403959843998",
     "senderID": "100078334435356",
-    "all": 348,
-    "week": 348,
-    "day": 279,
-    "lastUpdatedDay": 1718643600000,
+    "all": 356,
+    "week": 356,
+    "day": 6,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718511457524
   },
   {
@@ -4493,10 +4493,10 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100091974566277",
-    "all": 23,
-    "week": 23,
-    "day": 17,
-    "lastUpdatedDay": 1718643600000,
+    "all": 27,
+    "week": 27,
+    "day": 3,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718512836292
   },
   {
@@ -4556,18 +4556,18 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100025408253416",
-    "all": 257,
-    "week": 257,
-    "day": 40,
-    "lastUpdatedDay": 1718643600000,
+    "all": 261,
+    "week": 261,
+    "day": 4,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718515022388
   },
   {
     "threadID": "7902403959843998",
     "senderID": "100077551107195",
-    "all": 104,
-    "week": 104,
-    "day": 54,
+    "all": 105,
+    "week": 105,
+    "day": 55,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718515053732
   },
@@ -4628,10 +4628,10 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100055060285653",
-    "all": 119,
-    "week": 119,
-    "day": 31,
-    "lastUpdatedDay": 1718643600000,
+    "all": 121,
+    "week": 121,
+    "day": 2,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718518020402
   },
   {
@@ -4682,9 +4682,9 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100025727566475",
-    "all": 53,
-    "week": 53,
-    "day": 33,
+    "all": 55,
+    "week": 55,
+    "day": 35,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718521979278
   },
@@ -4700,10 +4700,10 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100074837977067",
-    "all": 7,
-    "week": 7,
-    "day": 4,
-    "lastUpdatedDay": 1718643600000,
+    "all": 8,
+    "week": 8,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718522341934
   },
   {
@@ -4718,9 +4718,9 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100063838626991",
-    "all": 15,
-    "week": 15,
-    "day": 13,
+    "all": 16,
+    "week": 16,
+    "day": 14,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718523250869
   },
@@ -4835,10 +4835,10 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100081172412260",
-    "all": 15,
-    "week": 15,
-    "day": 14,
-    "lastUpdatedDay": 1718643600000,
+    "all": 16,
+    "week": 16,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718531479556
   },
   {
@@ -4889,19 +4889,19 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100025285759509",
-    "all": 51,
-    "week": 51,
-    "day": 49,
-    "lastUpdatedDay": 1718643600000,
+    "all": 52,
+    "week": 52,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718539211983
   },
   {
     "threadID": "7902403959843998",
     "senderID": "100086734003313",
-    "all": 20,
-    "week": 20,
+    "all": 21,
+    "week": 21,
     "day": 1,
-    "lastUpdatedDay": 1718643600000,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718539248831
   },
   {
@@ -4916,18 +4916,18 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100094224429563",
-    "all": 80,
-    "week": 80,
-    "day": 63,
-    "lastUpdatedDay": 1718643600000,
+    "all": 81,
+    "week": 81,
+    "day": 1,
+    "lastUpdatedDay": 1718730000000,
     "lastUpdatedWeek": 1718539493026
   },
   {
     "threadID": "7902403959843998",
     "senderID": "61554933490601",
-    "all": 61,
-    "week": 61,
-    "day": 53,
+    "all": 62,
+    "week": 62,
+    "day": 54,
     "lastUpdatedDay": 1718643600000,
     "lastUpdatedWeek": 1718539581406
   },
@@ -5060,9 +5060,9 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100081042153899",
-    "all": 99,
-    "week": 99,
-    "day": 99,
+    "all": 101,
+    "week": 101,
+    "day": 101,
     "lastUpdatedDay": 1718668800000,
     "lastUpdatedWeek": 1718509876752
   },
@@ -5096,9 +5096,9 @@
   {
     "threadID": "7902403959843998",
     "senderID": "61555016023007",
-    "all": 6,
-    "week": 6,
-    "day": 6,
+    "all": 7,
+    "week": 7,
+    "day": 7,
     "lastUpdatedDay": 1718668800000,
     "lastUpdatedWeek": 1718522095353
   },
@@ -5114,9 +5114,9 @@
   {
     "threadID": "7902403959843998",
     "senderID": "100073656304924",
-    "all": 182,
-    "week": 182,
-    "day": 182,
+    "all": 189,
+    "week": 189,
+    "day": 189,
     "lastUpdatedDay": 1718668800000,
     "lastUpdatedWeek": 1718527446019
   },
@@ -5204,9 +5204,9 @@
   {
     "threadID": "7914937368545941",
     "senderID": "100048126482025",
-    "all": 21,
-    "week": 21,
-    "day": 21,
+    "all": 22,
+    "week": 22,
+    "day": 22,
     "lastUpdatedDay": 1718668800000,
     "lastUpdatedWeek": 1718543821623
   },
@@ -5227,5 +5227,14 @@
     "day": 29,
     "lastUpdatedDay": 1718668800000,
     "lastUpdatedWeek": 1718544886653
+  },
+  {
+    "threadID": "7902403959843998",
+    "senderID": "100078467853527",
+    "all": 2,
+    "week": 2,
+    "day": 2,
+    "lastUpdatedDay": 1718668800000,
+    "lastUpdatedWeek": 1718561165316
   }
 ]

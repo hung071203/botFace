@@ -31,55 +31,33 @@ module.exports.handleReply = async function (api, event, client, hdr) {
     if(event.type != 'message_reply') return
     if(event.args[0].includes(process.env.PREFIX)) return
     if(event.messageReply.messageID != hdr.messageID) return
-    const data = {
-        text: event.body,
-        lc: 'vn'
-      };
+    
       
-      const config = {
-        headers: {
-          'authority': 'simsimi.vn',
-          'method': 'POST',
-          'path': '/web/simtalk',
-          'scheme': 'https',
-          'Accept': 'application/json, text/javascript, */*; q=0.01',
-          'Accept-Encoding': 'gzip, deflate, br, zstd',
-          'Accept-Language': 'vi,en;q=0.9,en-GB;q=0.8,en-US;q=0.7',
-          'Content-Length': qs.stringify(data).length,
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          'Origin': 'https://simsimi.vn',
-          'Priority': 'u=1, i',
-          'Referer': 'https://simsimi.vn/',
-          'Sec-Ch-Ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
-          'Sec-Ch-Ua-Mobile': '?0',
-          'Sec-Ch-Ua-Platform': '"Windows"',
-          'Sec-Fetch-Dest': 'empty',
-          'Sec-Fetch-Mode': 'cors',
-          'Sec-Fetch-Site': 'same-origin',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      };
-      
-      axios.post('https://simsimi.vn/web/simtalk', qs.stringify(data), config)
-        .then(response => {
-            if(!response.data.success) return api.sendMessage('loi!', event.threadID, event.messageID)
-          console.log(response.data.success);
-            api.sendMessage(`${response.data.success}`, event.threadID, (err, info) =>{
-                if(err) return console.error(err);
-                client.handleReply.push({
-                    type: 'sim',
-                    name: this.config.name,
-                    messageID: info.messageID,
-                    author: event.senderID,
-                    timestamp: parseInt(info.timestamp)
-                })
-            }, event.messageID);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          api.sendMessage(error.message, event.threadID, event.messageID)
-        });
+    const apiUrl = 'https://api.simsimi.vn/v1/simtalk';
+    const params = new URLSearchParams();
+    params.append('text', event.body);
+    params.append('lc', 'vn');
+    params.append('key', ''); // Replace with your actual API key if you have one
+
+    axios.post(apiUrl, params)
+    .then(response => {
+        if(!response.data.success) return api.sendMessage('loi!', event.threadID, event.messageID)
+        console.log(response.data.success);
+        api.sendMessage(`${response.data.message}`, event.threadID, (err, info) =>{
+            if(err) return console.error(err);
+            client.handleReply.push({
+                type: 'sim',
+                name: this.config.name,
+                messageID: info.messageID,
+                author: event.senderID,
+                timestamp: parseInt(info.timestamp)
+            })
+        }, event.messageID);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        api.sendMessage(error.data.message, event.threadID, event.messageID)
+    });
 }
 
 const data = [

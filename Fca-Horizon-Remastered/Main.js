@@ -112,8 +112,13 @@ function ClassicHTML(UserName, Type, link) {
                     const seconds = Math.floor((timeElapsed / 1000) % 60);
                     const minutes = Math.floor((timeElapsed / (1000 * 60)) % 60);
                     const hours = Math.floor((timeElapsed / (1000 * 60 * 60)) % 24);
-
-                    document.getElementById('currentTime').textContent = \`\${hours}:\${minutes}:\${seconds}s\`;
+                    const days = Math.floor(timeElapsed / (1000 * 60 * 60 * 24));
+                    if (days > 0) {
+                        document.getElementById('currentTime').textContent = \`\${days} ngày, \${hours}:\${minutes}:\${seconds}\`;
+                    }else{
+                        document.getElementById('currentTime').textContent = \`\${hours}:\${minutes}:\${seconds}s\`;
+                    }
+                    
                 }
 
                 function sendCommand() {
