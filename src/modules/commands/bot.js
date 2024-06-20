@@ -9,31 +9,28 @@ module.exports.config = {
     usage: 'bot'
 };
 
-
 module.exports.run = async function (api, event, args, client) {
     api.sendMessage(`${data[Math.floor(Math.random() * data.length)]}`, event.threadID, event.messageID);
 }
 
-module.exports.handleEvent = function (api, event, args, client) {
-    if(event.type == 'message' || event.type == 'message_reply'){
+module.exports.handleEvent = function (api, event, client) {
+    if (event.type == 'message' || event.type == 'message_reply') {
         const inputURL = event.body.toLowerCase(); 
-        if(!inputURL.includes('bot')) return
-        if(event.type == 'message_reply'){
-            let find = client.handleReply.find(item => item.messageID == event.messageReply.messageID)
-            if(find) return
+        if (!inputURL.includes('bot')) return;
+        if (event.type == 'message_reply') {
+            let find = client.handleReply.find(item => item.messageID == event.messageReply.messageID);
+            if (find) return;
         }
-        getmsg(api, event, client)
+        getmsg(api, event, client);
     }
-    
 }
 
 module.exports.handleReply = async function (api, event, client, hdr) {
-    if(event.type != 'message_reply') return
-    if(event.args[0].includes(process.env.PREFIX)) return
-    if(event.messageReply.messageID != hdr.messageID) return
+    if (event.type != 'message_reply') return;
+    if (event.args[0].includes(process.env.PREFIX)) return;
+    if (event.messageReply.messageID != hdr.messageID) return;
     console.log('bot');
-    getmsg(api, event, client)
-    
+    getmsg(api, event, client);
 }
 
 function getmsg(api, event, client) {
@@ -46,22 +43,22 @@ function getmsg(api, event, client) {
     axios.post(apiUrl, params)
     .then(response => {
         console.log(response.data);
-        if(!response.data) return api.sendMessage('loi!', event.threadID, event.messageID)
+        if (!response.data) return api.sendMessage('loi!', event.threadID, event.messageID);
         
-        api.sendMessage(`${response.data.message}`, event.threadID, (err, info) =>{
-            if(err) return console.error(err);
+        api.sendMessage(`${response.data.message}`, event.threadID, (err, info) => {
+            if (err) return console.error(err);
             client.handleReply.push({
                 type: 'sim',
-                name: this.config.name,
+                name: module.exports.config.name, // Sử dụng module.exports.config thay cho this.config
                 messageID: info.messageID,
                 author: event.senderID,
                 timestamp: parseInt(info.timestamp)
-            })
+            });
         }, event.messageID);
     })
     .catch(error => {
         console.error('Error:', error);
-        api.sendMessage(error.message, event.threadID, event.messageID)
+        api.sendMessage(error.message, event.threadID, event.messageID);
     });
 }
 

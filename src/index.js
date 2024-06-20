@@ -31,7 +31,7 @@ var client = {
     dataLevel: new Array(),
     Ban: new Array(),
     botTime: new Array(),
-    crypto: new Array,
+    crypto: new Array(),
     onload: new Array()
   }
 
