@@ -14,25 +14,29 @@ module.exports.run = async function (api, event, args, client) {
     api.sendMessage(`${data[Math.floor(Math.random() * data.length)]}`, event.threadID, event.messageID);
 }
 
-module.exports.noprefix = function (api, event, args, client) {
-    api.sendMessage(`${data[Math.floor(Math.random() * data.length)]}\n\nRep tin nhắn này để trò chuyện với bot`, event.threadID, (err, info) =>{
-        if(err) return console.error(err);
-        client.handleReply.push({
-            type: 'sim',
-            name: this.config.name,
-            messageID: info.messageID,
-            author: event.senderID,
-            timestamp: parseInt(info.timestamp)
-        })
-    }, event.messageID);
+module.exports.handleEvent = function (api, event, args, client) {
+    if(event.type == 'message' || event.type == 'message_reply'){
+        const inputURL = event.body.toLowerCase(); 
+        if(!inputURL.includes('bot')) return
+        if(event.type == 'message_reply'){
+            let find = client.handleReply.find(item => item.messageID == event.messageReply.messageID)
+            if(find) return
+        }
+        getmsg(api, event, client)
+    }
+    
 }
 
 module.exports.handleReply = async function (api, event, client, hdr) {
     if(event.type != 'message_reply') return
     if(event.args[0].includes(process.env.PREFIX)) return
     if(event.messageReply.messageID != hdr.messageID) return
+    console.log('bot');
+    getmsg(api, event, client)
     
-      
+}
+
+function getmsg(api, event, client) {
     const apiUrl = 'https://api.simsimi.vn/v1/simtalk';
     const params = new URLSearchParams();
     params.append('text', event.body);
@@ -41,8 +45,9 @@ module.exports.handleReply = async function (api, event, client, hdr) {
 
     axios.post(apiUrl, params)
     .then(response => {
-        if(!response.data.success) return api.sendMessage('loi!', event.threadID, event.messageID)
-        console.log(response.data.success);
+        console.log(response.data);
+        if(!response.data) return api.sendMessage('loi!', event.threadID, event.messageID)
+        
         api.sendMessage(`${response.data.message}`, event.threadID, (err, info) =>{
             if(err) return console.error(err);
             client.handleReply.push({
@@ -56,7 +61,7 @@ module.exports.handleReply = async function (api, event, client, hdr) {
     })
     .catch(error => {
         console.error('Error:', error);
-        api.sendMessage(error.data.message, event.threadID, event.messageID)
+        api.sendMessage(error.message, event.threadID, event.messageID)
     });
 }
 
