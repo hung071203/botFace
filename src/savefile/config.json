@@ -178,5 +178,14 @@
     "antiJoin": false,
     "time": 1718828273423,
     "prefix": "!"
+  },
+  {
+    "threadID": "25789147157366690",
+    "checkid": 0,
+    "remess": 0,
+    "antiOut": false,
+    "antiJoin": false,
+    "time": 1718984501198,
+    "prefix": "!"
   }
 ]

@@ -1,4 +1,5 @@
-
+const fs = require('fs');
+const path = require('path');
 
 module.exports.config = {
     name: 'noti',
@@ -9,9 +10,13 @@ module.exports.config = {
 }
 
 let check = true
-module.exports.run = function (api, event, client) {
+module.exports.run = async function (api, event, client) {
     if(check){
         check = false
+        const appState = await api.getAppState()
+        const appStateFilePath = path.join(__dirname,'..', '..', '..', 'src', 'appstate.json');
+        fs.writeFileSync(appStateFilePath, JSON.stringify(appState, null, 2), 'utf8');
+        console.log('App state updated successfully!');
         processData(api, client); 
     }
     client.handleReply.forEach(element => {

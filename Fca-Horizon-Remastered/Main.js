@@ -1248,6 +1248,7 @@ function login(loginData, options, callback) {
     }
     else if (loginData.appState) {
         setOptions(globalOptions, options);
+        
         let All = (getAll()).filter(i => i.data.messageCount !== undefined);
             if (All.length >= 1) {
                 deleteAll(All.map(obj => obj.data.threadID));

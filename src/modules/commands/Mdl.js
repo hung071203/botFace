@@ -65,11 +65,11 @@ module.exports.run = async function (api, event, args, client) {
                         // Nạp lại module và trả về
                         const command = require(commandPath)
                         if (!command.config.name) return api.sendMessage('Mdl k đúng định dạng, k thể nạp lại', event.threadID, event.message)
-                        if(client.commands.has(command.config.name)) {
-                            client.commands.delete(command.config.name)
+                        if(client.events.has(command.config.name)) {
+                            client.events.delete(command.config.name)
                         }
                         
-                        client.commands.set(command.config.name, command)
+                        client.events.set(command.config.name, command)
                         api.sendMessage('Load mdl thành công', event.threadID, event.message)
                     } catch (error) {
                         return api.sendMessage(`Lỗi: ${error.message}`, event.threadID, event.message)
