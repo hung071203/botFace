@@ -20,7 +20,7 @@ module.exports.run = async function (api, event, args, client) {
         msg = 'Đã bật auto rep!'
     }else{
         
-        find.botRep = true
+        find.botRep = false
         msg = 'Đã tắt auto rep!'
     
     }

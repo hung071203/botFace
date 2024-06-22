@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 //-[ Require config and use ]-!/
 let lsevents = [global.events]
 
@@ -884,6 +885,7 @@ function makeLogin(jar, email, password, loginOptions, callback, prCallback) {
                                         if (!headers.location && res.body.indexOf('Review Recent Login') > -1) throw { error: "Something went wrong with review recent login." };
 
                                         var appState = utils.getAppState(jar,false);
+                                        
 
                                         return loginHelper(appState, email, password, loginOptions, callback);
                                     })
@@ -1144,7 +1146,11 @@ try {
             .then(async() => {
                 logger.Normal(getText(Language.LocalVersion,global.Fca.Version));
                     logger.Normal(getText(Language.CountTime,global.Fca.Data.CountTime()))   
-                        logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
+                    const appState = await api.getAppState()
+                    const appStateFilePath = path.join(__dirname,'..', 'src', 'appstate.json');
+                    fs.writeFileSync(appStateFilePath, JSON.stringify(appState, null, 2), 'utf8');
+                    console.log('App state updated successfully!');
+                    logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
                     require('./Extra/ExtraUptimeRobot')();
                 callback(null, api);
             }).catch(function(/** @type {{ error: any; }} */e) {
@@ -1249,7 +1255,8 @@ function login(loginData, options, callback) {
     else if (loginData.appState) {
         setOptions(globalOptions, options);
         
-        let All = (getAll()).filter(i => i.data.messageCount !== undefined);
+        let arr  = (getAll()).filter(i => i.data !== null);
+        let All = arr.filter(i => i.data.messageCount !== undefined);
             if (All.length >= 1) {
                 deleteAll(All.map(obj => obj.data.threadID));
             }
