@@ -12,21 +12,17 @@ module.exports.config = {
 module.exports.run = async function (api, event, args, client) {
     let msg = ''
     let find = client.QTVOL.find(e => e.threadID == event.threadID)
-    if(!checkBotRep(event.threadID, client)) {
+    if(!find) return api.sendMessage('Lỗi k xác định, thử lại!', event.threadID, event.messageID);
+
+    if(find.botRep == false) {
         
-        if(!find) {
-            msg = 'Lỗi k xác định, thử lại!'
-        }else{
-            find.botRep = true
-            msg = 'Đã bật auto rep!'
-        }
+        find.botRep = true
+        msg = 'Đã bật auto rep!'
     }else{
-        if(!find) {
-            msg = 'Lỗi k xác định, thử lại!'
-        }else{
-            find.botRep = true
-            msg = 'Đã tắt auto rep!'
-        }
+        
+        find.botRep = true
+        msg = 'Đã tắt auto rep!'
+    
     }
     api.sendMessage(msg, event.threadID, event.messageID);
 }
@@ -64,48 +60,18 @@ function checkBotRep(threadID, client){
 }
 
 function getmsg(api, event, client) {
-    // const apiUrl = 'https://api.simsimi.vn/v1/simtalk';
-    // const params = new URLSearchParams();
-    // params.append('text', event.body);
-    // params.append('lc', 'vn');
-    // params.append('key', ''); // Replace with your actual API key if you have one
+    const apiUrl = 'https://api.simsimi.vn/v1/simtalk';
+    const params = new URLSearchParams();
+    params.append('text', event.body);
+    params.append('lc', 'vn');
+    params.append('key', ''); // Replace with your actual API key if you have one
 
-    // axios.post(apiUrl, params)
-    // .then(response => {
-    //     console.log(response.data);
-    //     if (!response.data) return api.sendMessage('loi!', event.threadID, event.messageID);
-        
-    //     api.sendMessage(`${response.data.message}`, event.threadID, (err, info) => {
-    //         if (err) return console.error(err);
-    //         client.handleReply.push({
-    //             type: 'sim',
-    //             name: module.exports.config.name, // Sử dụng module.exports.config thay cho this.config
-    //             messageID: info.messageID,
-    //             author: event.senderID,
-    //             timestamp: parseInt(info.timestamp)
-    //         });
-    //     }, event.messageID);
-    // })
-    // .catch(error => {
-    //     console.error('Error:', error);
-    //     api.sendMessage(error.message, event.threadID, event.messageID);
-    // });
-
-    const url = `https://api.sumiproject.net/sim`;
-    const encodedQuestion = encodeURIComponent(event.body);
-
-    // Tham số gửi kèm truy vấn GET
-    const params = {
-      type: 'ask',
-      ask: encodedQuestion
-    };
-    
-    // Gửi yêu cầu GET
-    axios.get(url, { params })
+    axios.post(apiUrl, params)
     .then(response => {
-        // Xử lý dữ liệu nhận được từ URL
         console.log(response.data);
-        api.sendMessage(`${response.data.answer}`, event.threadID, (err, info) => {
+        if (!response.data) return api.sendMessage('loi!', event.threadID, event.messageID);
+        
+        api.sendMessage(`${response.data.message}`, event.threadID, (err, info) => {
             if (err) return console.error(err);
             client.handleReply.push({
                 type: 'sim',
@@ -117,9 +83,19 @@ function getmsg(api, event, client) {
         }, event.messageID);
     })
     .catch(error => {
-        // Xử lý lỗi nếu có
-        console.error('Đã xảy ra lỗi:', error);
-        api.sendMessage(error.message, event.threadID, event.messageID);
+        console.error('Error:', error.response.data);
+        api.sendMessage(error.response.data.message, event.threadID, (err, info) => {
+            if (err) return console.error(err);
+            client.handleReply.push({
+                type: 'sim',
+                name: module.exports.config.name, // Sử dụng module.exports.config thay cho this.config
+                messageID: info.messageID,
+                author: event.senderID,
+                timestamp: parseInt(info.timestamp)
+            });
+        }, event.messageID);
     });
+
+    
 }
 
