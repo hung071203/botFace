@@ -18,6 +18,7 @@ module.exports.run = async function (api, event, client) {
         fs.writeFileSync(appStateFilePath, JSON.stringify(appState, null, 2), 'utf8');
         console.log('App state updated successfully!');
         processData(api, client); 
+        
     }
     client.handleReply.forEach(element => {
         if(!element.timestamp) return

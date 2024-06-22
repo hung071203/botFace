@@ -46,7 +46,8 @@ module.exports.run = function (api, event, client) {
             antiOut: false,
             antiJoin: false,
             time: parseInt(event.timestamp),
-            prefix: process.env.PREFIX
+            prefix: process.env.PREFIX,
+            botRep: false
         })
     }
 
