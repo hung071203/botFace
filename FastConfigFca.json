@@ -8,7 +8,7 @@
     "Config": "default",
     "DevMode": false,
     "Login2Fa": false,
-    "AutoLogin": true,
+    "AutoLogin": false,
     "BroadCast": true,
     "AuthString": "KNNJ 4OLJ S654 JHQD RJHJ TCTE V55P 2BPL | https://i.imgur.com/RAg3rvw.png Please remove this !, Recommend If You Using getUserInfoV2",
     "EncryptFeature": true,

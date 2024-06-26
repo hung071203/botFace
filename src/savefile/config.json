@@ -117,7 +117,7 @@
     "antiJoin": false,
     "time": 1802445128704,
     "prefix": "!",
-    "botRep": false
+    "botRep": true
   },
   {
     "threadID": "7641143102608809",
@@ -137,7 +137,7 @@
     "antiJoin": false,
     "time": 1725168602264,
     "prefix": ".",
-    "botRep": false
+    "botRep": true
   },
   {
     "threadID": "7439543482787986",

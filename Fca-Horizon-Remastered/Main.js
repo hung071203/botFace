@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+
 //-[ Require config and use ]-!/
 let lsevents = [global.events]
 
@@ -1146,10 +1146,7 @@ try {
             .then(async() => {
                 logger.Normal(getText(Language.LocalVersion,global.Fca.Version));
                     logger.Normal(getText(Language.CountTime,global.Fca.Data.CountTime()))   
-                    const appState = await api.getAppState()
-                    const appStateFilePath = path.join(__dirname,'..', 'src', 'appstate.json');
-                    fs.writeFileSync(appStateFilePath, JSON.stringify(appState, null, 2), 'utf8');
-                    console.log('App state updated successfully!');
+                    
                     logger.Normal(Language.WishMessage[Math.floor(Math.random()*Language.WishMessage.length)]);
                     require('./Extra/ExtraUptimeRobot')();
                 callback(null, api);

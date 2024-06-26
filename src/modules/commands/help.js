@@ -65,7 +65,7 @@ module.exports.run = async function (api, event, args, client) {
   
 module.exports.handleReply = async function (api, event, client, hdr) {
   if(event.type != 'message_reply') return
-  if(!event.messageReply.messageID) return
+  if(!event.messageReply) return
   if(hdr.messageID != event.messageReply.messageID) return
   if(isNaN(event.body)) return api.sendMessage(`Phải nhập vào 1 số!`, event.threadID, event.messageID)
   let index = parseInt(event.body) - 1
