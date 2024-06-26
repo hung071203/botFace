@@ -81,6 +81,7 @@ module.exports.run = async function (api, event, args, client) {
                         const handlers = ['handlerCommand', 'handlerEvent'];
 
                         handlers.forEach(handler => {
+                            client.onload.clear()
                             commandPath = path.join(__dirname, '..', '..', `core`, `${handler}`);
                             delete require.cache[require.resolve(commandPath)];
                         

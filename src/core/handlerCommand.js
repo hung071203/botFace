@@ -15,6 +15,7 @@ module.exports = (client) => {
         console.log(client.commands.get('test').run.toString());
     }
     client.commands.clear()
+    client.noprefix.clear()
     console.log(client.commands, '223232');
     for(const file of commandFile){
         require.cache[require.resolve(commandPath + `/${file}`)]

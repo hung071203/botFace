@@ -1,5 +1,5 @@
 // help.js
-
+const levenshtein = require('fast-levenshtein');
 module.exports.config = {
     name: 'help',
     version: '1.0.0',
@@ -9,6 +9,18 @@ module.exports.config = {
   };
   
 module.exports.run = async function (api, event, args, client) {
+  if(args.length == 2){
+    let listCommands = []
+    client.commands.forEach((value, key) => {
+      listCommands.push(key);
+    });
+    let command = args[1].toLowerCase();
+    if (!listCommands.includes(command)) {
+        let find = findClosestCommand(command, listCommands);
+        return api.sendMessage (`⛔Lệnh bạn nhập không tồn tại!\n♟️Lệnh gần giống nhất là: ${find}`, event.threadID, event.messageID);
+    }
+    return api.sendMessage (`👉Tên lệnh: ${client.commands.get(command).config.name}\n♟️Phiên bản lệnh: ${client.commands.get(command).config.version}\n👤Tác giả: ${client.commands.get(command).config.credit}\n📜Chú thích: ${client.commands.get(command).config.description}\n📝Cách sử dụng: ${client.commands.get(command).config.usage}`, event.threadID, event.messageID);
+  }
   
   const commandInfoByTag = {};
   const tagCommands = {};
@@ -76,4 +88,18 @@ module.exports.handleReply = async function (api, event, client, hdr) {
     api.unsendMessage(hdr.messageID);
     client.handleReply = client.handleReply.filter(item =>item.messageID != event.messageReply.messageID);
   }, event.messageID)
+}
+function findClosestCommand(input, commands) {
+    let closestCommand = null;
+    let closestDistance = Infinity;
+
+    commands.forEach(command => {
+        const distance = levenshtein.get(input, command);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestCommand = command;
+        }
+    });
+
+    return closestCommand;
 }

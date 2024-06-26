@@ -7,6 +7,7 @@ module.exports = (client) => {
 
     var eventCount = 0;
     client.events.clear()
+    
     for(const file of eventFile){
         require.cache[require.resolve(eventPath + `/${file}`)]
         let event = require(eventPath + `/${file}`);

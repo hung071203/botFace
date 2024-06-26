@@ -1,6 +1,5 @@
 'use strict';
 
-
 //-[ Require config and use ]-!/
 let lsevents = [global.events]
 
@@ -1252,11 +1251,12 @@ function login(loginData, options, callback) {
     else if (loginData.appState) {
         setOptions(globalOptions, options);
         
-        let arr  = (getAll()).filter(i => i.data !== null);
-        let All = arr.filter(i => i.data.messageCount !== undefined);
-            if (All.length >= 1) {
-                deleteAll(All.map(obj => obj.data.threadID));
-            }
+       
+        // let All = (getAll()).filter(i => i.data.messageCount !== undefined);
+        //     if (All.length >= 1) {
+        //         deleteAll(All.map(obj => obj.data.threadID));
+        //     }
+
         /*
         if (global.Fca.Require.FastConfig.Websocket_Extension.Status) {
             const UserName = Database().get('Ws_UserName');
