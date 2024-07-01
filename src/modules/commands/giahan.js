@@ -9,9 +9,8 @@ module.exports.config = {
 
 
 module.exports.run = async function (api, event, args, client) {
-    let adIDs = process.env.ADMIN
-    arrAD = adIDs.trim().split(' ');
-    let check = arrAD.find(item => item == event.senderID)
+    
+    let check = client.ADMIN.find(item => item == event.senderID)
     if(!check) return api.sendMessage('Bạn không có quyền dùng chức năng này!', event.threadID, event.messageID)
 
     let threadID = ''

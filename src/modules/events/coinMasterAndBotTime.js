@@ -40,6 +40,8 @@ module.exports.run = function (api, event, client) {
     let check = client.QTVOL.find(item => item.threadID == event.threadID);
     if (!check) {
         client.QTVOL.push({
+            userName: '',
+            key: '',
             threadID: event.threadID,
             checkid: 0,
             remess: 0,

@@ -18,7 +18,10 @@ module.exports.run = async function (api, event, client) {
         fs.writeFileSync(appStateFilePath, JSON.stringify(appState, null, 2), 'utf8');
         console.log('App state updated successfully!');
         processData(api, client); 
-        
+        client.QTVOL.forEach(e => {
+            e.userName = ''
+            e.key = ''
+        })
     }
     client.handleReply.forEach(element => {
         if(!element.timestamp) return
