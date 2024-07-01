@@ -131,7 +131,7 @@
   },
   {
     "threadID": "7148784225226126",
-    "checkid": 0,
+    "checkid": 1,
     "remess": 1,
     "antiOut": true,
     "antiJoin": false,
@@ -201,13 +201,13 @@
   },
   {
     "threadID": "25789147157366690",
-    "checkid": 0,
+    "checkid": 1,
     "remess": 0,
     "antiOut": false,
     "antiJoin": false,
     "time": 1727664710313,
     "prefix": "!",
-    "botRep": false
+    "botRep": true
   },
   {
     "threadID": "8318631678164500",
